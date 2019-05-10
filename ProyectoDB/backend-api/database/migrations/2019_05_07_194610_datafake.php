@@ -4,19 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoRespuestasTable extends Migration
+class Datafake extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('tipo_respuestas', function (Blueprint $table) {
-            $table->integer('ID');
-            $table->string('significado',20);
+    public function up(){
+        Schema::create('datafake', function (Blueprint $table) {
+            $table->string('name');
+            $table->string('email');
         });
+        //
     }
 
     /**
@@ -26,6 +26,6 @@ class CreateTipoRespuestasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_respuestas');
+        Schema::dropIfExists('datafake');
     }
 }

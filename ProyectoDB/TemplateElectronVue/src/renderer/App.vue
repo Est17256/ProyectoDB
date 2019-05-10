@@ -7,28 +7,44 @@
       temporary
       class="quinto">
       <v-list class="accent--text">
-        <v-list-tile to="/page-one" exact>
+        <v-list-tile to="/CreacionesVarias" exact>
           <v-list-tile-action>
             <v-icon class="grey--text text--darken-3">fa-home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title class="grey--text text--darken-3">Menu Principal</v-list-tile-title>
+            <v-list-tile-title class="grey--text text--darken-3">Creaciones Varias</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile to="/page-two" exact>
+        <v-list-tile to="/Productos" exact>
           <v-list-tile-action>
             <v-icon class="grey--text text--darken-3">fa-home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title class="grey--text text--darken-3">Gestionar Usuario</v-list-tile-title>
+            <v-list-tile-title class="grey--text text--darken-3">Crear Producto</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile to="/page-four" exact>
+        <v-list-tile to="/Facturas" exact>
           <v-list-tile-action>
             <v-icon class="grey--text text--darken-3">fa-home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title class="grey--text text--darken-3">Gestionar Paciente</v-list-tile-title>
+            <v-list-tile-title class="grey--text text--darken-3">Crear Factura</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile to="/LineaFactura" exact>
+          <v-list-tile-action>
+            <v-icon class="grey--text text--darken-3">fa-home</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title class="grey--text text--darken-3">Linea de Factura</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile to="/DataFake" exact>
+          <v-list-tile-action>
+            <v-icon class="grey--text text--darken-3">fa-home</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title class="grey--text text--darken-3">Generar Data Falsa</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -41,7 +57,7 @@
         class="grey--text text--darken-3"
         @click.stop="drawer = !drawer">
       </v-toolbar-side-icon>
-      <v-toolbar-title class="grey--text text--darken-3">Gestión de Usuarios</v-toolbar-title>
+      <v-toolbar-title class="grey--text text--darken-3"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn icon class="grey--text text--darken-3">

@@ -35,36 +35,24 @@ Vue.use(Vuetify, {
 
 const routes = [
   {
-    path: '/login',
-    component: Vue.component('login', require('./components/Login.vue').default)
+    path: '/CreacionesVarias',
+    component: Vue.component('CreacionesVarias', require('./components/CreacionesVarias.vue').default)
   },
   {
-    path: '/page-one',
-    component: Vue.component('page-one', require('./components/PageOne.vue').default)
+    path: '/Productos',
+    component: Vue.component('Productos', require('./components/Productos.vue').default)
   },
   {
-    path: '/page-two',
-    component: Vue.component('page-two', require('./components/PageTwo.vue').default)
+    path: '/Facturas',
+    component: Vue.component('Facturas', require('./components/Facturas.vue').default)
   },
   {
-    path: '/page-three',
-    component: Vue.component('page-three', require('./components/PageThree.vue').default)
+    path: '/LineaFactura',
+    component: Vue.component('LineaFactura', require('./components/LineaFactura.vue').default)
   },
   {
-    path: '/page-four',
-    component: Vue.component('page-four', require('./components/GestionPacientes.vue').default)
-  },
-  {
-    path: '/ingresarPaciente',
-    component: Vue.component('ingresarPaciente', require('./components/IngresarPaciente.vue').default)
-  },
-  {
-    path: '/EditarPaciente',
-    component: Vue.component('EditarPaciente', require('./components/EditarPaciente.vue').default)
-  },
-  {
-    path: '/EditarEstadoPaciente',
-    component: Vue.component('EditarEstadoPaciente', require('./components/EditarEstadoPaciente.vue').default)
+    path: '/DataFake',
+    component: Vue.component('DataFake', require('./components/DataFake.vue').default)
   }
 ];
 

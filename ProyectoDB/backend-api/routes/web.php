@@ -28,30 +28,10 @@ $router->get('/users', 'ExampleController@getUsers');
 $router->get('/users/table', 'ExampleController@CreatT');
 $router->post('/message', 'ExampleController@postExample');
 
-//CRUD: TABLA ESTADOS DB
-$router->get('/EstadoController/find', 'EstadoController@find');
-$router->get('/EstadoController/getEstado', 'EstadoController@getEstado');
-$router->post('/EstadoController/insert', 'EstadoController@insert');
-$router->get('/EstadoController/update', 'EstadoController@update');
-
-//CRUD: TABLA PACIENTES
-$router->get('/PacienteController/find', 'PacienteController@find');
-$router->get('/PacienteController/findAll', 'PacienteController@findAll');
-$router->post('/PacienteController/insert', 'PacienteController@store');
-$router->get('/PacienteController/update', 'PacienteController@update');
-
-
 $router->delete('/users/destroy','ExampleController@destroy');
 $router->post('/users/create', 'ExampleController@store');
+$router->post('/users/createFaker', 'FakeControle@storeFaker');
+$router->get('/users/Faker', 'FakeControle@getUsersF');
 $router->put('/users/update', 'ExampleController@update');
-$router->post('/doLogin', 'HomeController@printInfo');
-
-$router->get('/evaluateLogin', 'loginController@doLogin');
-$router->get('/verifyLogin', 'loginController@login');
-
-$router->post('/login', 'loginController@login');
-
-$router->post('/logout', 'loginController@logout');
-
 $router->delete('/users/{id}','ExampleController@destroy');
 

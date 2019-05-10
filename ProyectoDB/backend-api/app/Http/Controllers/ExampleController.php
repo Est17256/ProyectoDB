@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\User;
+use App\datafake;
 
 class ExampleController extends Controller
 {
@@ -17,7 +17,17 @@ class ExampleController extends Controller
     {
         
     }
-
+    public function getUsers() {
+        $users = User::all();
+        $users= $users;
+        
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'users' => $users,
+            'message'=>'Funciono',
+        ], 200);
+    }
     public function index() {
         // regresa una respuesta con el objeto especificado como json
         // y el segundo parametro es el codigo HTTP.
@@ -28,7 +38,7 @@ class ExampleController extends Controller
         ], 200);
     }
 
-    public function getUsers() {
+    public function getID() {
         $users = DB::select('SELECT id from users');
         #echo "Probando...";
 
@@ -55,7 +65,7 @@ class ExampleController extends Controller
         // hay varias maneras de acceder a los datos que vienen en el Request.
         // Una de ellas es simplemente como un atributo del objeto, con la sintaxis (->)
         // Es lo mismo que el (.) en otros lenguajes: objeto->nombreAtributo
-
+        
         return response()->json([
             'success' => true,
             'message' => 'El usuario envio: '.$request->message
@@ -71,18 +81,11 @@ class ExampleController extends Controller
             'message' => 'eliminado'
         ], 200);
     }
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'email',
-            'password' => 'min:6|max:255'
-        ]);
-        
+    public function store()
+    {    
         $user = new User;
-        $user->id = $request->id;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
+        $user->name = 'diego';
+        $user->email = 'diego@gmail.com';
         $user->save();
 
         return response()->json([
