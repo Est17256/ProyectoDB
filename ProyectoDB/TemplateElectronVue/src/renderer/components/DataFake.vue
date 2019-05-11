@@ -1,6 +1,6 @@
 <template>
   <div class="grey--text text--darken-2">
-    <h1 class="text-center">Gestión de Pacientes</h1>
+    <h1 class="text-center">Generar Factura</h1>
     <div>
       <v-flex xs12>
         <v-combobox
@@ -10,8 +10,8 @@
         ></v-combobox>
       </v-flex>
     <b-col>
-            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Users">Crear</button>
-            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="crear">CrearF</button>
+            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Users">Users</button>
+            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="crear">crear</button>
           </b-col>
     </div>
   </div>

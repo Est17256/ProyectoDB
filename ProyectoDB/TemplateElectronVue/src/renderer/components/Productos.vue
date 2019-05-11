@@ -47,180 +47,29 @@ export default {
   mounted() {
     this.$http.get("http://localhost:8000/users").then(response => {
       this.user = response.data.users;
+      this.user.forEach(a=>this.hola.push(a.name))
+      console.log(this.hola)
     });
-  },
-  data() {
-    return {
-      picked: "",
-      nombre:'',
-      id:'',
-      name:'',
-      email:'',
-      password:'',
-      selected:'',
-      user: [],
-      headers: [
-        { text: "ID", align: "center", value: "ID" },
-        { text: "Nombre", align: "center", value: "Nombre" },
-        { text: "Correo", align: "center", value: "Correo" },
-        { text: "DPI", align: "center", value: "DPI" }
-      ]
-    };
+   },
+    data () {
+      return {
+        id:'',
+        hola:[],
+        user:[],
+        select: 'Categoria',
+      }
   },
   methods:{
     refreshUsers(){
       this.$http.get("http://localhost:8000/users").then(response => {
-      this.user = response.data.users;
-    });
-    },
-    eliminar(){
-      this.errorName = false;
-      this.errorDPI = false;
-      this.errorEmail = false;
-      this.errorPassword = false;
-      this.errorTipoUsuario = false;
-
-      if(this.id === ''){
-        this.errorDPI = true;
-      }else{
-        this.errorDPI = false;
-      }
-      if(this.id != ''){
-      this.$http.delete(`http://localhost:8000/users/destroy?id=${this.id}`).then(response=>{
-        this.refreshUsers();
-        this.name = '';
-        this.id = '';
-        this.email = '';
-        this.password = '';
-        this.selected = null;
-      });
-      }
-    },
-    crear(){
-      this.errorName = false;
-      this.errorDPI = false;
-      this.errorEmail = false;
-      this.errorPassword = false;
-      this.errorTipoUsuario = false;
-      this.errorFormato = false;
-      this.errorLargo = false;
-
-      if(this.name === ''){
-        this.errorName = true;
-      }else{
-        this.errorName = false;
-      }
-
-      if(this.id === ''){
-        this.errorDPI = true;
-      }else{
-        this.errorDPI = false;
-      }
-
-      if(this.email === ''){
-        this.errorEmail = true;
-      }else{
-        this.errorEmail = false;
-      }
-
-      if(this.password === ''){
-        this.errorPassword = true;
-      }else{
-        this.errorPassword = false;
-      }
-
-      if(this.selected == null){
-        this.errorTipoUsuario = true;
-      }else{
-        this.errorTipoUsuario = false;
-      }
-
-      if(this.name != '' && this.id != '' && this.password != '' && this.email != '' && this.selected != null){
-        this.$http.post(`http://localhost:8000/users/create?id=${this.id}&name=${this.name}&email=${this.email}&password=${this.password}`).then(response=>{
-          this.refreshUsers();
-          this.name = '';
-          this.id = '';
-          this.email = '';
-          this.password = '';
-          this.selected = null;
-        }).catch(error => {
-          if (error.response.data.email === undefined){
-            this.errorFormato = false;
-          }else{
-            this.errorFormato = true;
-          }
-
-          if (error.response.data.password === undefined){
-            this.errorLargo = false;
-          }else{
-            this.errorLargo = true;
-          }
+        this.user = response.data.users;
+        this.user.forEach(a=>this.hola.push(a.name))
+        console.log(this.hola)
         });
       }
-    },
-    modificar(){
-      this.errorName = false;
-      this.errorDPI = false;
-      this.errorEmail = false;
-      this.errorPassword = false;
-      this.errorTipoUsuario = false;
-      this.errorFormato = false;
-      this.errorLargo = false;
-
-      if(this.name === ''){
-        this.errorName = true;
-      }else{
-        this.errorName = false;
-      }
-
-      if(this.id === ''){
-        this.errorDPI = true;
-      }else{
-        this.errorDPI = false;
-      }
-
-      if(this.email === ''){
-        this.errorEmail = true;
-      }else{
-        this.errorEmail = false;
-      }
-
-      if(this.password === ''){
-        this.errorPassword = true;
-      }else{
-        this.errorPassword = false;
-      }
-
-      if(this.selected == null){
-        this.errorTipoUsuario = true;
-      }else{
-        this.errorTipoUsuario = false;
-      }
-
-      if(this.name != '' && this.id != '' && this.password != '' && this.email != '' && this.selected != null){
-        this.$http.put(`http://localhost:8000/users/update?id=${this.id}&name=${this.name}&email=${this.email}&password=${this.password}`).then(response=>{
-          this.refreshUsers();
-          this.name = '';
-          this.id = '';
-          this.email = '';
-          this.password = '';
-          this.selected = null;
-        }).catch(error => {
-          if (error.response.data.email === undefined){
-            this.errorFormato = false;
-          }else{
-            this.errorFormato = true;
-          }
-
-          if (error.response.data.password === undefined){
-            this.errorLargo = false;
-          }else{
-            this.errorLargo = true;
-          }
-        });
-      }
-    }
   }
+
+    
 };
 </script>
 <style>
