@@ -19,7 +19,7 @@
           </b-col> 
           <b-col>
             <label for="nameInput">Nombre</label>
-            <input id="nameInput" type="text" v-model="name" class="form-control" placeholder="Nombre">
+            <input id="nameInput" type="text" v-model="nombre" class="form-control" placeholder="Nombre">
           </b-col> 
           <b-col>
             <br>
@@ -35,16 +35,15 @@
 <script>
 export default {
   mounted() {
-    this.$http.get("http://localhost:8000/users").then(response => {
+    this.$http.get("http://localhost:8000/datosVarios").then(response => {
       this.user = response.data.users;
     });
   },
   data() {
     return {
       picked: "",
-      nombre:'',
       id:'',
-      name:'',
+      nombre:'',
       email:'',
       password:'',
       selected:'',
@@ -59,154 +58,30 @@ export default {
   },
   methods:{
     refreshUsers(){
-      this.$http.get("http://localhost:8000/users").then(response => {
-      this.user = response.data.users;
-    });
-    },
-    eliminar(){
-      this.errorName = false;
-      this.errorDPI = false;
-      this.errorEmail = false;
-      this.errorPassword = false;
-      this.errorTipoUsuario = false;
-
-      if(this.id === ''){
-        this.errorDPI = true;
-      }else{
-        this.errorDPI = false;
-      }
-      if(this.id != ''){
-      this.$http.delete(`http://localhost:8000/users/destroy?id=${this.id}`).then(response=>{
-        this.refreshUsers();
-        this.name = '';
-        this.id = '';
-        this.email = '';
-        this.password = '';
-        this.selected = null;
+      this.$http.get("http://localhost:8000/datosVarios").then(response => {
+        this.user = response.data.users;
       });
-      }
     },
-    crear(){
-      this.errorName = false;
-      this.errorDPI = false;
-      this.errorEmail = false;
-      this.errorPassword = false;
-      this.errorTipoUsuario = false;
-      this.errorFormato = false;
-      this.errorLargo = false;
-
-      if(this.name === ''){
-        this.errorName = true;
-      }else{
-        this.errorName = false;
-      }
-
-      if(this.id === ''){
-        this.errorDPI = true;
-      }else{
-        this.errorDPI = false;
-      }
-
-      if(this.email === ''){
-        this.errorEmail = true;
-      }else{
-        this.errorEmail = false;
-      }
-
-      if(this.password === ''){
-        this.errorPassword = true;
-      }else{
-        this.errorPassword = false;
-      }
-
-      if(this.selected == null){
-        this.errorTipoUsuario = true;
-      }else{
-        this.errorTipoUsuario = false;
-      }
-
-      if(this.name != '' && this.id != '' && this.password != '' && this.email != '' && this.selected != null){
-        this.$http.post(`http://localhost:8000/users/create?id=${this.id}&name=${this.name}&email=${this.email}&password=${this.password}`).then(response=>{
-          this.refreshUsers();
-          this.name = '';
-          this.id = '';
-          this.email = '';
-          this.password = '';
-          this.selected = null;
-        }).catch(error => {
-          if (error.response.data.email === undefined){
-            this.errorFormato = false;
-          }else{
-            this.errorFormato = true;
-          }
-
-          if (error.response.data.password === undefined){
-            this.errorLargo = false;
-          }else{
-            this.errorLargo = true;
-          }
+    Crear(){
+      if (this.selected=="Categoria") {
+        this.$http.post(`http://localhost:8000/categorias/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
+        this.refreshUsers();
+        this.id = '';
+        this.nombre = '';
         });
       }
-    },
-    modificar(){
-      this.errorName = false;
-      this.errorDPI = false;
-      this.errorEmail = false;
-      this.errorPassword = false;
-      this.errorTipoUsuario = false;
-      this.errorFormato = false;
-      this.errorLargo = false;
-
-      if(this.name === ''){
-        this.errorName = true;
-      }else{
-        this.errorName = false;
+      if (this.selected=="Marca") {
+        this.$http.post(`http://localhost:8000/marcas/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
+        this.refreshUsers();
+        this.id = '';
+        this.nombre = '';
+        });
       }
-
-      if(this.id === ''){
-        this.errorDPI = true;
-      }else{
-        this.errorDPI = false;
-      }
-
-      if(this.email === ''){
-        this.errorEmail = true;
-      }else{
-        this.errorEmail = false;
-      }
-
-      if(this.password === ''){
-        this.errorPassword = true;
-      }else{
-        this.errorPassword = false;
-      }
-
-      if(this.selected == null){
-        this.errorTipoUsuario = true;
-      }else{
-        this.errorTipoUsuario = false;
-      }
-
-      if(this.name != '' && this.id != '' && this.password != '' && this.email != '' && this.selected != null){
-        this.$http.put(`http://localhost:8000/users/update?id=${this.id}&name=${this.name}&email=${this.email}&password=${this.password}`).then(response=>{
-          this.refreshUsers();
-          this.name = '';
-          this.id = '';
-          this.email = '';
-          this.password = '';
-          this.selected = null;
-        }).catch(error => {
-          if (error.response.data.email === undefined){
-            this.errorFormato = false;
-          }else{
-            this.errorFormato = true;
-          }
-
-          if (error.response.data.password === undefined){
-            this.errorLargo = false;
-          }else{
-            this.errorLargo = true;
-          }
+      if (this.selected=="Cliente") {
+        this.$http.post(`http://localhost:8000/clientes/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
+        //this.refreshUsers();
+        this.id = '';
+        this.nombre = '';
         });
       }
     }

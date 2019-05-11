@@ -8,25 +8,42 @@
           <b-col>
             <label for="nameInput">ID</label>
             <input id="nameInput" type="text" v-model="id" class="form-control" placeholder="ID">
+            <br>
+            <label for="nameInput">ID Linea</label>
+            <input id="nameInput" type="text" v-model="idL" class="form-control" placeholder="ID Linea">
           </b-col> 
           <b-col>
             <label for="nameInput">Fecha</label>
             <input id="nameInput" type="text" v-model="fecha" class="form-control" placeholder="Fecha">
+            <br>
+            <v-flex xs12>
+              <v-combobox
+                v-model="selectProd"
+                :items="hola"
+                label="Producto"
+              ></v-combobox>
+            </v-flex>
           </b-col>
           <b-col>
             <label for="nameInput">Hora</label>
             <input id="nameInput" type="text" v-model="hora" class="form-control" placeholder="Hora">
+            <br>
+            <label for="nameInput">Cantidad</label>
+            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Cantidad">
           </b-col> 
           <b-col>
             <label for="nameInput">Total</label>
             <input id="nameInput" type="text" v-model="total" class="form-control" placeholder="Total">
+            <br>
+            <label for="nameInput">Precio</label>
+            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Precio">
           </b-col> 
           <b-col>
             <v-flex xs12>
               <v-combobox
                 v-model="selectClie"
                 :items="hola"
-                label="Categoria"
+                label="Cliente"
               ></v-combobox>
             </v-flex>
           </b-col>
