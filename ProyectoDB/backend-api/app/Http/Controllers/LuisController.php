@@ -44,19 +44,34 @@ class LuisController extends Controller
             'message' => 'creado'
         ], 200);
     }
-    public function getAll() {
-        $categorias = categorias::all();
-        $categorias= $categorias;
+    public function getMar() {
         $marcas = marcas::all();
         $marcas= $marcas;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'marcas' => $marcas,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    public function getCat() {
+        $categorias = categorias::all();
+        $categorias= $categorias;
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'categorias' => $categorias,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    public function getCli() {
         $clientes = clientes::all();
         $clientes = $clientes;
         
         #echo "Probando...";
         return response()->json([
             'success' => true,
-            'categorias' => $categorias,
-            'marcas' => $marcas,
             'clientes' => $clientes,
             'message'=>'Funciono',
         ], 200);

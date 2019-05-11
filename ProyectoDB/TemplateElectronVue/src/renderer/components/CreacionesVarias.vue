@@ -1,7 +1,37 @@
 <template lang="">
   <div class="grey--text text--darken-2">
     <h1 class="text-center">Creaciones Varias</h1>
-    <br><br><br><br><br>
+    <br>
+    <div>
+      <b-container class="bv-example-row2">
+        <b-row class="justify-content-md-center">
+          <b-col>
+            <v-data-table :headers="headersMar" :items="marca" class="elevation-1">
+              <template v-slot:items="props">
+                <td class="text-xs-center">{{ props.item.id }}</td>
+                <td class="text-xs-center">{{ props.item.nombre }}</td>
+              </template>
+            </v-data-table>
+          </b-col>
+          <b-col>
+            <v-data-table :headers="headersCat" :items="categoria" class="elevation-1">
+              <template v-slot:items="props">
+                <td class="text-xs-center">{{ props.item.id }}</td>
+                <td class="text-xs-center">{{ props.item.nombre }}</td>
+              </template>
+            </v-data-table>
+          </b-col>
+          <b-col>
+            <v-data-table :headers="headersCli" :items="cliente" class="elevation-1">
+              <template v-slot:items="props">
+                <td class="text-xs-center">{{ props.item.id }}</td>
+                <td class="text-xs-center">{{ props.item.nombre }}</td>
+              </template>
+            </v-data-table>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
     <div>
       <b-container class="bv-example-row2">
         <b-row class="justify-content-md-center">
@@ -35,8 +65,14 @@
 <script>
 export default {
   mounted() {
-    this.$http.get("http://localhost:8000/datosVarios").then(response => {
-      this.user = response.data.users;
+    this.$http.get("http://localhost:8000/categorias").then(response => {
+      this.categoria = response.data.categorias;
+    });
+    this.$http.get("http://localhost:8000/marcas").then(response => {
+      this.marca = response.data.marcas;
+    });
+    this.$http.get("http://localhost:8000/clientes").then(response => {
+      this.cliente = response.data.clientes;
     });
   },
   data() {
@@ -48,11 +84,20 @@ export default {
       password:'',
       selected:'',
       user: [],
-      headers: [
-        { text: "ID", align: "center", value: "ID" },
-        { text: "Nombre", align: "center", value: "Nombre" },
-        { text: "Correo", align: "center", value: "Correo" },
-        { text: "DPI", align: "center", value: "DPI" }
+      marca: [],
+      cliente: [],
+      categoria: [],
+      headersMar: [
+        { text: "ID", align: "center",sortable: false, value: "ID" },
+        { text: "Marca", align: "center",sortable: false, value: "Marca" }
+      ],
+      headersCat: [
+        { text: "ID", align: "center",sortable: false, value: "ID" },
+        { text: "Categoria", align: "center",sortable: false, value: "Categoria" }
+      ],
+      headersCli: [
+        { text: "ID", align: "center",sortable: false, value: "ID" },
+        { text: "Cliente", align: "center",sortable: false, value: "Cliente" }
       ]
     };
   },

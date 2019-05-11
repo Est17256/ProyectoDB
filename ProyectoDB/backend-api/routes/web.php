@@ -32,7 +32,11 @@ $router->get('/', function () use ($router) {
 $router->post('/categorias/create', 'LuisController@createCat');
 $router->post('/marcas/create', 'LuisController@createMar');
 $router->post('/clientes/create', 'LuisController@createCli');
-$router->get('/datosVarios', 'LuisController@getAll');
+//$router->get('/datosVarios', 'LuisController@getAll');
+
+$router->get('/categorias', 'LuisController@getCat');
+$router->get('/marcas', 'LuisController@getMar');
+$router->get('/clientes', 'LuisController@getCli');
 
 //$router->delete('/users/destroy','ExampleController@destroy');
 //$router->post('/users/create', 'ExampleController@store');
