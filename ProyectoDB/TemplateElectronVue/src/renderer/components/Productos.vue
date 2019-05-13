@@ -15,12 +15,12 @@
             <input id="nameInput" type="text" v-model="nombre" class="form-control" placeholder="Nombre">
           </b-col> 
           <b-col>
-            <label for="nameInput">Categoria</label>
-            <input id="nameInput" type="text" v-model="categoria" class="form-control" placeholder="Categoria">
+            <!--label for="nameInput">Categoria</label>
+            <input id="nameInput" type="text" v-model="categoria" class="form-control" placeholder="Categoria"-->
             <v-flex xs12>
               <v-combobox
-                v-model="selectCat"
-                :items="hola"
+                v-model="categoria"
+                :items="hola1"
                 label="Categoria"
               ></v-combobox>
               <br><br><br><br><br><br><br><br><br>
@@ -37,12 +37,12 @@
             </v-flex>
           </b-col>
           <b-col>
-            <label for="nameInput">Marca</label>
-            <input id="nameInput" type="text" v-model="marca" class="form-control" placeholder="marca">
+            <!--label for="nameInput">Marca</label>
+            <input id="nameInput" type="text" v-model="marca" class="form-control" placeholder="marca"-->
             <v-flex xs12>
               <v-combobox
-                v-model="selectMar"
-                :items="hola"
+                v-model="marca"
+                :items="hola2"
                 label="Marca"
               ></v-combobox>
             </v-flex>
@@ -61,20 +61,29 @@
 <script>  
 export default {
   mounted() {
-    this.$http.get("http://localhost:8000/productos").then(response => {
-      this.productos = response.data.productos;
+    this.$http.get("http://localhost:8000/categorias").then(response => {
+      this.categorias = response.data.categorias;
+      this.categorias.forEach(a=>this.hola1.push(a.nombre))
+      //console.log(this.hola)
     });
+    this.$http.get("http://localhost:8000/marcas").then(response => {
+      this.marcas = response.data.marcas;
+      this.marcas.forEach(a=>this.hola2.push(a.nombre))
+    });
+    
    },
     data () {
       return {
         id:'',
         nombre: '',
-        hola:[],
+        hola1:[],
+        hola2:[],
         user:[],
         productos:[],
+        categorias:[],
         select: 'Categoria',
-        selectCat:'',
-        selectMar:''
+        marca:'',
+        categoria:''
       }
   },
   methods:{
