@@ -33,12 +33,15 @@ $router->post('/categorias/create', 'LuisController@createCat');
 $router->post('/marcas/create', 'LuisController@createMar');
 $router->post('/clientes/create', 'LuisController@createCli');
 $router->post('/productos/create', 'GustavoController@createPro');
+$router->post('/extras/create', 'GustavoController@createExtra');
+
 //$router->get('/datosVarios', 'LuisController@getAll');
 
 $router->get('/categorias', 'LuisController@getCat');
 $router->get('/marcas', 'LuisController@getMar');
 $router->get('/clientes', 'LuisController@getCli');
 $router->get('/productos', 'GustavoController@getPro');
+$router->get('/productos', 'GustavoController@getExtra');
 
 
 //$router->delete('/users/destroy','ExampleController@destroy');

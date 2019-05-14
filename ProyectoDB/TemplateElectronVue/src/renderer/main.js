@@ -48,8 +48,8 @@ const routes = [
     component: Vue.component('Facturas', require('./components/Facturas.vue').default)
   },
   {
-    path: '/LineaFactura',
-    component: Vue.component('LineaFactura', require('./components/LineaFactura.vue').default)
+    path: '/CampoN',
+    component: Vue.component('CampoN', require('./components/CampoN.vue').default)
   },
   {
     path: '/DataFake',

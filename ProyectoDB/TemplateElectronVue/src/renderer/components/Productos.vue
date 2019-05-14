@@ -13,10 +13,8 @@
           <b-col>
             <label for="nameInput">Nombre</label>
             <input id="nameInput" type="text" v-model="nombre" class="form-control" placeholder="Nombre">
-          </b-col> 
+          </b-col>
           <b-col>
-            <!--label for="nameInput">Categoria</label>
-            <input id="nameInput" type="text" v-model="categoria" class="form-control" placeholder="Categoria"-->
             <v-flex xs12>
               <v-combobox
                 v-model="categoria"
@@ -24,21 +22,10 @@
                 label="Categoria"
               ></v-combobox>
               <br><br><br><br><br><br><br><br><br>
-             <div class="auto" id="auto" style="display: none">
-                Oculta
-              </div>
-
-              <div class="auto" id="auto">
-                No Oculta
-              </div>
-            
-              
               <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear">Crear</button>
             </v-flex>
           </b-col>
           <b-col>
-            <!--label for="nameInput">Marca</label>
-            <input id="nameInput" type="text" v-model="marca" class="form-control" placeholder="marca"-->
             <v-flex xs12>
               <v-combobox
                 v-model="marca"
@@ -47,12 +34,10 @@
               ></v-combobox>
             </v-flex>
           </b-col> 
-          <!--b-col>
-            <br>
-            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear">Agregar Campo</button>
-          </b-col-->
+          <b-col>
+          </b-col>
         </b-row>
-      </b-container>
+      </b-container> 
     </div>
   </div>
 </template>
@@ -64,7 +49,7 @@ export default {
     this.$http.get("http://localhost:8000/categorias").then(response => {
       this.categorias = response.data.categorias;
       this.categorias.forEach(a=>this.hola1.push(a.nombre))
-      //console.log(this.hola)
+      
     });
     this.$http.get("http://localhost:8000/marcas").then(response => {
       this.marcas = response.data.marcas;
@@ -72,10 +57,14 @@ export default {
     });
     
    },
+  
+   
     data () {
+      
       return {
         id:'',
         nombre: '',
+        extra: '',
         hola1:[],
         hola2:[],
         user:[],
@@ -83,7 +72,8 @@ export default {
         categorias:[],
         select: 'Categoria',
         marca:'',
-        categoria:''
+        categoria:'',
+        counter: 0,
       }
   },
   methods:{
@@ -94,7 +84,10 @@ export default {
       this.categoria = '';
       this.marca = '';
       });
-    } 
+    },
+    Agregar(){
+
+    }
   }   
 };
 </script>

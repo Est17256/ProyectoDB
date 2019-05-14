@@ -31,12 +31,12 @@
             <v-list-tile-title class="grey--text text--darken-3">Crear Factura</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile to="/LineaFactura" exact>
+        <v-list-tile to="/CampoN" exact>
           <v-list-tile-action>
             <v-icon class="grey--text text--darken-3">fa-home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title class="grey--text text--darken-3">Linea de Factura</v-list-tile-title>
+            <v-list-tile-title class="grey--text text--darken-3">Campo Nuevo</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile to="/DataFake" exact>
