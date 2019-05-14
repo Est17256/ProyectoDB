@@ -2,17 +2,12 @@
   <div class="grey--text text--darken-2">
     <h1 class="text-center">Generar Factura</h1>
     <div>
-      <v-flex xs12>
-        <v-combobox
-          v-model="select"
-          :items="hola"
-          label="Select a favorite activity or create a new one"
-        ></v-combobox>
-      </v-flex>
+      <label for="nameInput">ID</label>
+      <input id="nameInput" type="date" v-model="id" class="form-control" placeholder="ID">
     <b-col>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Users">Users</button>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="crear">crear</button>
-          </b-col>
+    </b-col>
     </div>
   </div>
 </template>
