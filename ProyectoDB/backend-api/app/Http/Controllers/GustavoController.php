@@ -60,16 +60,4 @@ class GustavoController extends Controller
         ], 200);
     }
 
-    public function getCampoN() {
-        $opcional = opcional::all();
-        $opcional = opcional;
-
-        #echo "Probando...";
-        return response()->json([
-            'success' => true,
-            'opcional' => $opcional,
-            'message'=>'Funciono',
-        ], 200);
-    }
-
 }

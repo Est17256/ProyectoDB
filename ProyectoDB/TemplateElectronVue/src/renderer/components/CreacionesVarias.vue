@@ -130,7 +130,7 @@ export default {
       }
       if (this.selected=="Cliente") {
         this.$http.post(`http://localhost:8000/clientes/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
-        //this.refreshUsers();
+        this.refreshUsers();
         this.id = '';
         this.nombre = '';
         });

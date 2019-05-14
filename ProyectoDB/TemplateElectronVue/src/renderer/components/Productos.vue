@@ -34,9 +34,9 @@
               ></v-combobox>
             </v-flex>
           </b-col>
-          <b-col v-for = "a in cantidad">
-            <label> {{a}} </label>
-            <input type = "text" class = "form-control" v-model="valor[a]">
+          <b-col v-for = "a in contadorOp">
+            <label> {{opcional[a]}} </label>
+            <input type = "text" class = "form-control" v-model="valorOpcional[a]">
           </b-col>
         </b-row>
       </b-container>
@@ -59,8 +59,14 @@ export default {
     });
     this.$http.get("http://localhost:8000/opcional").then(response => {
       this.cantidad = response.data.opcional;
-      this.cantidad.forEach(a=>this.contadorOp.push(a.id));
+      var i;
+      for (i = 0; i < this.cantidad.length; i++){
+        this.contadorOp.push(i);
+        this.valorOpcional.push('');
+
+      }
       this.cantidad.forEach(a=>this.opcional.push(a.nombre));
+      console.log(this.opcional)
     });
 
 
@@ -82,6 +88,7 @@ export default {
         contadorOp:[],
         cantidad:[],
         opcional:[],
+        valorOpcional:[],
         select: 'Categoria',
         marca:'',
         categoria:'',
