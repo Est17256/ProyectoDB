@@ -11,7 +11,7 @@
           </b-col>
           <b-col>
             <label for="nameInput">Nuevo Campo</label>
-            <input id="nameInput" type="text" v-model="campoN" class="form-control" placeholder="Nuevo Campo">
+            <input id="nameInput" type="text" v-model="nombre" class="form-control" placeholder="Nuevo Campo">
           </b-col>
           <b-col>
             <br>
@@ -27,15 +27,14 @@
 <script>
 export default {
   mounted() {
-    this.$http.get("http://localhost:8000/users").then(response => {
-      this.user = response.data.users;
-    });
+    //this.$http.get("http://localhost:8000/opcional").then(response => {
+    //this.opcional = response.data.opcional;
+    //});
   },
   data() {
     return {
       id:'',
-      campoN:'',
-      name:'',
+      nombre:'',
       email:'',
       password:'',
       selected:'',
@@ -43,19 +42,12 @@ export default {
     };
   },
   methods:{
-    refreshUsers(){
-      this.$http.get("http://localhost:8000/users").then(response => {
-      this.user = response.data.users;
-    });
-    },
     Crear(){
-      this.$http.post(`http://localhost:8000/productos/create?id=${this.id}&nombre=${this.nombre}&categoria=${this.categoria}&marca=${this.marca}`).then(response=>{
+      this.$http.post(`http://localhost:8000/opcional/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
       this.id = '';
       this.nombre = '';
-      this.categoria = '';
-      this.marca = '';
       });
-    },
+    }
   }
 };
 </script>
@@ -63,5 +55,5 @@ export default {
 div#Tabla {
   float: right;
   align-items: center;
-}
+} 
 </style>

@@ -28,7 +28,7 @@ Vue.use(Vuetify, {
     secondary: '#5068a9',
     tercero: '#303841',
     cuarto: '#3A4750',
-    quinto: '#EA9215', //00ced1 
+    quinto: '#00ced1 ', //00ced1 
     sexto: '#EEEEEE',
     accent: '#f8f8f8',
   }

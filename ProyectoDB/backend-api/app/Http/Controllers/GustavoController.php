@@ -35,12 +35,12 @@ class GustavoController extends Controller
             'message'=>'Funciono',
         ], 200);
     }
-    public function createExtra(Request $request)
+    public function createOpc(Request $request)
     {    
-        $extra = new extra;
-        $extra->id = $request->id;
-        $extra->nombre = $request->nombre;
-        $productos->save();
+        $opcional = new opcional;
+        $opcional->id = $request->id;
+        $opcional->nombre = $request->nombre;
+        $opcional->save();
 
         return response()->json([
             'success' => true,
@@ -48,14 +48,14 @@ class GustavoController extends Controller
         ], 200);
         
     }
-    public function getExtra() {
-        $productos = productos::all();
-        $productos= $productos;
+    public function getOpc() {
+        $opcional = opcional::all();
+        $opcional= $opcional;
 
         #echo "Probando...";
         return response()->json([
             'success' => true,
-            'productos' => $productos,
+            'opcional' => $opcional,
             'message'=>'Funciono',
         ], 200);
     }
