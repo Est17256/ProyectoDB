@@ -103,9 +103,15 @@ export default {
   },
   methods:{
     refreshUsers(){
-      this.$http.get("http://localhost:8000/datosVarios").then(response => {
-        this.user = response.data.users;
-      });
+      this.$http.get("http://localhost:8000/categorias").then(response => {
+      this.categoria = response.data.categorias;
+    });
+    this.$http.get("http://localhost:8000/marcas").then(response => {
+      this.marca = response.data.marcas;
+    });
+    this.$http.get("http://localhost:8000/clientes").then(response => {
+      this.cliente = response.data.clientes;
+    });
     },
     Crear(){
       if (this.selected=="Categoria") {
