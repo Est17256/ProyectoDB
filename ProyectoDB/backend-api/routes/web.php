@@ -34,6 +34,7 @@ $router->post('/marcas/create', 'LuisController@createMar');
 $router->post('/clientes/create', 'LuisController@createCli');
 $router->post('/productos/create', 'GustavoController@createPro');
 $router->post('/opcional/create', 'GustavoController@createOpc');
+$router->post('/valoropcional/create', 'GustavoController@createValOp');
 
 //$router->get('/datosVarios', 'LuisController@getAll');
 
@@ -42,6 +43,7 @@ $router->get('/marcas', 'LuisController@getMar');
 $router->get('/clientes', 'LuisController@getCli');
 $router->get('/productos', 'GustavoController@getPro');
 $router->get('/opcional', 'GustavoController@getOpc');
+$router->get('/valoropcional', 'GustavoController@getValOp');
 
 
 //$router->delete('/users/destroy','ExampleController@destroy');
