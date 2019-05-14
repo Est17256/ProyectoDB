@@ -10,7 +10,7 @@ use App\opcional;
 class GustavoController extends Controller
 {
     public function createPro(Request $request)
-    {    
+    {
         $productos = new productos;
         $productos->id = $request->id;
         $productos->nombre = $request->nombre;
@@ -22,7 +22,7 @@ class GustavoController extends Controller
             'success' => true,
             'message' => 'creado'
         ], 200);
-        
+
     }
     public function getPro() {
         $productos = productos::all();
@@ -36,7 +36,7 @@ class GustavoController extends Controller
         ], 200);
     }
     public function createExtra(Request $request)
-    {    
+    {
         $extra = new extra;
         $extra->id = $request->id;
         $extra->nombre = $request->nombre;
@@ -46,7 +46,7 @@ class GustavoController extends Controller
             'success' => true,
             'message' => 'creado'
         ], 200);
-        
+
     }
     public function getExtra() {
         $productos = productos::all();
@@ -59,4 +59,17 @@ class GustavoController extends Controller
             'message'=>'Funciono',
         ], 200);
     }
+
+    public function getCampoN() {
+        $opcional = opcional::all();
+        $opcional = opcional;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'opcional' => $opcional,
+            'message'=>'Funciono',
+        ], 200);
+    }
+
 }

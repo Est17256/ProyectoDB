@@ -42,7 +42,7 @@ $router->get('/marcas', 'LuisController@getMar');
 $router->get('/clientes', 'LuisController@getCli');
 $router->get('/productos', 'GustavoController@getPro');
 $router->get('/productos', 'GustavoController@getExtra');
-
+$router->get('/opcional', 'GustavoController@getCampoN');
 
 //$router->delete('/users/destroy','ExampleController@destroy');
 //$router->post('/users/create', 'ExampleController@store');
@@ -50,4 +50,3 @@ $router->post('/users/createFaker', 'FakeControle@storeFaker');
 $router->get('/users/Faker', 'FakeControle@getUsersF');
 //$router->put('/users/update', 'ExampleController@update');
 //$router->delete('/users/{id}','ExampleController@destroy');
-
