@@ -100,21 +100,26 @@ export default {
       }
   },
   methods:{
+    
     Crear(){
-      const data = {
-        nombre: this.nombre,
-        
-      }
+      
       this.$http.post(`http://localhost:8000/productos/create?id=${this.id}&nombre=${this.nombre}&categoria=${this.categoria}&marca=${this.marca}`).then(response=>{
       //this.id = '';
       this.nombre = '';
       this.categoria = '';
       this.marca = '';
       });
-      
+      /*const data = {
+        id_producto: this.id,
+        id_campo: this.id_campo,
+        nombre: this.nombre,
+
+        
+      }*/
       for (var i = 0; i < this.valor.length; i++){
-        this.$http.post(`http://localhost:8000/valoropcional/create?id_producto=${this.id}&id_campo=${this.id_campo[i]}&nombre_campo=${this.nombre_campo[i]}&valor=${this.valor[i]}`).then(response=>{
-          console.log(response.data.hola);
+        this.$http.post(`http://localhost:8000/valoropcional/create?id=${this.id}&id_campo=${this.id_campo[i]}&nombre_campo=${this.nombre_campo[i]}&valor=${this.valor[i]}`).then(response=>{
+        
+        console.log(response.data.hola);
         
       });
       }

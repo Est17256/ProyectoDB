@@ -64,10 +64,10 @@ class GustavoController extends Controller
     {   
         $valoropcional = new valoropcional;
         
-        $valoropcional->id_producto = 1;
-        $valoropcional->id_campo = 1;
-        $valoropcional->nombre_campo = "Peso";
-        $valoropcional->valor = 12;
+        $valoropcional->id = $request->id;
+        $valoropcional->id_campo = $request->id_campo;
+        $valoropcional->nombre_campo = $request->nombre_campo;
+        $valoropcional->valor = $request->valor;
         $valoropcional->save();
         
 
