@@ -50,4 +50,3 @@ $router->post('/users/createFaker', 'FakeControle@storeFaker');
 $router->get('/users/Faker', 'FakeControle@getUsersF');
 //$router->put('/users/update', 'ExampleController@update');
 //$router->delete('/users/{id}','ExampleController@destroy');
-

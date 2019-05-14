@@ -5,7 +5,7 @@
     <div>
       <b-container class="bv-example-row2">
         <b-row class="justify-content-md-center">
-         
+
           <b-col>
             <label for="nameInput">ID</label>
             <input id="nameInput" type="text" v-model="id" class="form-control" placeholder="ID">
@@ -33,34 +33,43 @@
                 label="Marca"
               ></v-combobox>
             </v-flex>
-          </b-col> 
-          <b-col>
+          </b-col>
+          <b-col v-for = "a in cantidad">
+            <label> {{a}} </label>
+            <input type = "text" class = "form-control" v-model="valor[a]">
           </b-col>
         </b-row>
-      </b-container> 
+      </b-container>
     </div>
   </div>
 </template>
 
 
-<script>  
+<script>
 export default {
   mounted() {
     this.$http.get("http://localhost:8000/categorias").then(response => {
       this.categorias = response.data.categorias;
       this.categorias.forEach(a=>this.hola1.push(a.nombre))
-      
+
     });
     this.$http.get("http://localhost:8000/marcas").then(response => {
       this.marcas = response.data.marcas;
       this.marcas.forEach(a=>this.hola2.push(a.nombre))
     });
-    
+    this.$http.get("http://localhost:8000/opcional").then(response => {
+      this.cantidad = response.data.opcional;
+      this.cantidad.forEach(a=>this.contadorOp.push(a.id));
+      this.cantidad.forEach(a=>this.opcional.push(a.nombre));
+    });
+
+
+
    },
-  
-   
+
+
     data () {
-      
+
       return {
         id:'',
         nombre: '',
@@ -70,6 +79,9 @@ export default {
         user:[],
         productos:[],
         categorias:[],
+        contadorOp:[],
+        cantidad:[],
+        opcional:[],
         select: 'Categoria',
         marca:'',
         categoria:'',
@@ -88,7 +100,7 @@ export default {
     Agregar(){
 
     }
-  }   
+  }
 };
 </script>
 <style>
