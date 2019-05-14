@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\productos;
 use App\opcional;
+use App\valoropcional;
 
 class GustavoController extends Controller
 {
@@ -28,7 +29,7 @@ class GustavoController extends Controller
         $productos = productos::all();
         $productos= $productos;
 
-        #echo "Probando...";
+        echo "Probando...";
         return response()->json([
             'success' => true,
             'productos' => $productos,
@@ -56,6 +57,35 @@ class GustavoController extends Controller
         return response()->json([
             'success' => true,
             'opcional' => $opcional,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    public function createValOp(Request $request)
+    {   
+        $valoropcional = new valoropcional;
+        
+        $valoropcional->id_producto = 1;
+        $valoropcional->id_campo = 1;
+        $valoropcional->nombre_campo = "Peso";
+        $valoropcional->valor = 12;
+        $valoropcional->save();
+        
+
+        return response()->json([
+            'success' => true,
+            'message' => 'creado',
+            'hola' => $request->valor
+        ], 200);
+
+    }
+    public function getValOp() {
+        $valoropcional = valoropcional::all();
+        $valoropcional= $valoropcional;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'valoropcional' => $valoropcional,
             'message'=>'Funciono',
         ], 200);
     }

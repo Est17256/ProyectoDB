@@ -35,8 +35,8 @@
             </v-flex>
           </b-col>
           <b-col v-for = "a in contadorOp">
-            <label> {{opcional[a]}} </label>
-            <input type = "text" class = "form-control" v-model="valorOpcional[a]">
+            <label> {{nombre_campo[a]}} </label>
+            <input type = "text" class = "form-control" v-model="valor[a]">
           </b-col>
         </b-row>
       </b-container>
@@ -60,13 +60,16 @@ export default {
     this.$http.get("http://localhost:8000/opcional").then(response => {
       this.cantidad = response.data.opcional;
       var i;
+      this.cantidad.forEach(a=>this.id_campo.push(a.id))
       for (i = 0; i < this.cantidad.length; i++){
         this.contadorOp.push(i);
-        this.valorOpcional.push('');
+        this.valor.push('');
 
       }
-      this.cantidad.forEach(a=>this.opcional.push(a.nombre));
-      console.log(this.opcional)
+      this.cantidad.forEach(a=>this.nombre_campo.push(a.nombre));
+      console.log(this.nombre_campo);
+      console.log(this.id_campo);
+      console.log(this.valor);
     });
 
 
@@ -77,7 +80,7 @@ export default {
     data () {
 
       return {
-        id:'',
+        id:0,
         nombre: '',
         extra: '',
         hola1:[],
@@ -87,8 +90,9 @@ export default {
         categorias:[],
         contadorOp:[],
         cantidad:[],
-        opcional:[],
-        valorOpcional:[],
+        nombre_campo:[],
+        valor:[],
+        id_campo:[],
         select: 'Categoria',
         marca:'',
         categoria:'',
@@ -97,15 +101,26 @@ export default {
   },
   methods:{
     Crear(){
+      const data = {
+        nombre: this.nombre,
+        
+      }
       this.$http.post(`http://localhost:8000/productos/create?id=${this.id}&nombre=${this.nombre}&categoria=${this.categoria}&marca=${this.marca}`).then(response=>{
-      this.id = '';
+      //this.id = '';
       this.nombre = '';
       this.categoria = '';
       this.marca = '';
       });
-    },
-    Agregar(){
-
+      
+      for (var i = 0; i < this.valor.length; i++){
+        this.$http.post(`http://localhost:8000/valoropcional/create?id_producto=${this.id}&id_campo=${this.id_campo[i]}&nombre_campo=${this.nombre_campo[i]}&valor=${this.valor[i]}`).then(response=>{
+          console.log(response.data.hola);
+        
+      });
+      }
+      //for (var i = 0; i < this.valorOpcional.length; i++){
+      //  this.valorOpcional[i] = '';
+      //}
     }
   }
 };
