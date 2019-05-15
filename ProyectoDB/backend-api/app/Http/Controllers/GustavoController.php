@@ -29,7 +29,7 @@ class GustavoController extends Controller
         $productos = productos::all();
         $productos= $productos;
 
-        echo "Probando...";
+        //echo "Probando...";
         return response()->json([
             'success' => true,
             'productos' => $productos,

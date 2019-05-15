@@ -53,7 +53,7 @@
             <v-flex xs12>
               <v-combobox
                  v-model="line.producto"
-                :items="productos"
+                :items="hola1"
                 label="Producto"
               ></v-combobox>
             </v-flex>
@@ -88,19 +88,18 @@
 <script>
 export default {
   mounted() {
-    this.$http.get("http://localhost:8000/users").then(response => {
-      this.user = response.data.users;
-    });
 
-    this.$http.get("http://localhost:8000/categorias").then(response => {
-      this.temporal = response.data.clientes;
-      this.temporal.forEach(a=>this.clientes.push(a.nombre))
-
+    this.$http.get("http://localhost:8000/productos").then(response => {
+      this.productos = response.data.productos;
+      console.log(this.productos);
+      console.log(this.hola1[0]);
+      this.productos.forEach(a=>this.hola1.push(a.nombre))
+      
     });
 
     this.$http.get("http://localhost:8000/clientes").then(response => {
-      this.temporal = response.data.clientes;
-      this.temporal.forEach(a=>this.clientes.push(a.nombre))
+      this.temporal2 = response.data.clientes;
+      this.temporal2.forEach(a=>this.clientes.push(a.nombre))
 
     });
 
@@ -109,8 +108,10 @@ export default {
   data() {
     return {
       picked: "",
+      productosItem:[],
       productos:[],
       clientes:[],
+      hola1:[],
       fecha:'',
       hora:'',
       total:'',
@@ -126,7 +127,8 @@ export default {
       email:'',
       password:'',
       selected:'',
-      temporal:[],
+      temporal1:[],
+      temporal2:[],
       user: [],
       headers: [
         { text: "ID", align: "center", value: "ID" },
