@@ -115,7 +115,7 @@ export default {
     },
     Crear(){
       if (this.selected=="Categoria") {
-        this.$http.post(`http://localhost:8000/categorias/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
+        this.$http.post(`http://localhost:8000/categorias/create?nombre=${this.nombre}`).then(response=>{
         this.refreshUsers();
         this.id = '';
         this.nombre = '';

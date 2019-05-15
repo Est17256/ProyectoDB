@@ -11,7 +11,7 @@ class LuisController extends Controller
     public function createCat(Request $request)
     {    
         $categorias = new categorias;
-        $categorias->id = $request->id;
+        #$categorias->id = $request->id;
         $categorias->nombre = $request->nombre;
         $categorias->save();
 
