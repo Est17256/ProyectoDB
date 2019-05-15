@@ -3,56 +3,82 @@
     <h1 class="text-center">Crear Factura</h1>
     <br><br><br><br><br>
     <div>
-      <b-container class="bv-example-row2">
-        <b-row class="justify-content-md-center">
-          <b-col>
+    <b-container class="bv-example-row2">
+          <b-row class="justify-content-md-center">
+            <b-col>
             <label for="nameInput">ID</label>
             <input id="nameInput" type="text" v-model="id" class="form-control" placeholder="ID">
-            <br>
-            <label for="nameInput">ID Linea</label>
-            <input id="nameInput" type="text" v-model="idL" class="form-control" placeholder="ID Linea">
-          </b-col> 
-          <b-col>
+            </b-col>
+
+            <b-col>
             <label for="nameInput">Fecha</label>
             <input id="nameInput" type="text" v-model="fecha" class="form-control" placeholder="Fecha">
-            <br>
-            <v-flex xs12>
-              <v-combobox
-                v-model="selectProd"
-                :items="hola"
-                label="Producto"
-              ></v-combobox>
-            </v-flex>
-          </b-col>
-          <b-col>
+            </b-col>
+
+            <b-col>
             <label for="nameInput">Hora</label>
             <input id="nameInput" type="text" v-model="hora" class="form-control" placeholder="Hora">
-            <br>
-            <label for="nameInput">Cantidad</label>
-            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Cantidad">
-          </b-col> 
-          <b-col>
+            </b-col>
+
+            <b-col>
             <label for="nameInput">Total</label>
             <input id="nameInput" type="text" v-model="total" class="form-control" placeholder="Total">
-            <br>
-            <label for="nameInput">Precio</label>
-            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Precio">
-          </b-col> 
-          <b-col>
+            </b-col>
+
+            <b-col>
             <v-flex xs12>
               <v-combobox
                 v-model="selectClie"
-                :items="hola"
+                :items="clientes"
                 label="Cliente"
               ></v-combobox>
             </v-flex>
-          </b-col>
-          <b-col>
-            <br>
+            </b-col>
+
+            <b-col>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear">Crear</button>
-          </b-col>
-        </b-row>
-      </b-container>
+            </b-col>
+          </b-row>
+
+    </b-container>
+
+    <b-container class="bv-example-row2">
+          <b-row class="justify-content-md-center">
+            <b-col>
+            <label for="nameInput">ID Linea</label>
+            <input id="nameInput" type="text" v-model="idL" class="form-control" placeholder="ID Linea">
+            </b-col>
+
+            <b-col>
+            <v-flex xs12>
+              <v-combobox
+                v-model="selectProd"
+                :items="productos"
+                label="Producto"
+              ></v-combobox>
+            </v-flex>
+            </b-col>
+
+            <b-col>
+            <label for="nameInput">Cantidad</label>
+            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Cantidad">
+            </b-col>
+
+            <b-col>
+            <label for="nameInput">Precio</label>
+            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Precio">
+            </b-col>
+
+            <b-col>
+
+            </b-col>
+
+            <b-col>
+
+            </b-col>
+          </b-row>
+
+    </b-container>
     </div>
   </div>
 </template>
@@ -64,16 +90,31 @@ export default {
     this.$http.get("http://localhost:8000/users").then(response => {
       this.user = response.data.users;
     });
+
+    this.$http.get("http://localhost:8000/categorias").then(response => {
+      this.temporal = response.data.clientes;
+      this.temporal.forEach(a=>this.clientes.push(a.nombre))
+
+    });
+
+    this.$http.get("http://localhost:8000/clientes").then(response => {
+      this.temporal = response.data.clientes;
+      this.temporal.forEach(a=>this.clientes.push(a.nombre))
+
+    });
   },
   data() {
     return {
       picked: "",
+      productos:[],
+      clientes:[],
       nombre:'',
       id:'',
       name:'',
       email:'',
       password:'',
       selected:'',
+      temporal:[],
       user: [],
       headers: [
         { text: "ID", align: "center", value: "ID" },
