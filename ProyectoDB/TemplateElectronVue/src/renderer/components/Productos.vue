@@ -50,14 +50,14 @@ export default {
   mounted() {
     this.$http.get("http://localhost:8000/categorias").then(response => {
       this.categorias = response.data.categorias;
-      this.categorias.forEach(a=>this.hola1.push(a.id))
       this.categorias.forEach(a=>this.hola3.push(a.nombre))
+      this.categorias.forEach(a=>this.dict1[a.nombre]=a.id)
 
     });
     this.$http.get("http://localhost:8000/marcas").then(response => {
       this.marcas = response.data.marcas;
-      this.marcas.forEach(a=>this.hola2.push(a.id))
       this.marcas.forEach(a=>this.hola4.push(a.nombre))
+      this.marcas.forEach(a=>this.dict2[a.nombre]=a.id)
     });
     this.$http.get("http://localhost:8000/opcional").then(response => {
       this.cantidad = response.data.opcional;
@@ -72,6 +72,7 @@ export default {
       console.log(this.nombre_campo);
       console.log(this.id_campo);
       console.log(this.valor);
+      console.log(this.dict);
     });
    },
 
@@ -83,12 +84,13 @@ export default {
         nombre: '',
         extra: '',
         hola1:[],
-        hola2:[],
         hola3:[],
         hola4:[],
         user:[],
         productos:[],
         categorias:[],
+        dict1:[],
+        dict2:[],
         contadorOp:[],
         cantidad:[],
         nombre_campo:[],
@@ -104,7 +106,7 @@ export default {
     
     Crear(){
       
-      this.$http.post(`http://localhost:8000/productos/create?id=${this.id}&nombre=${this.nombre}&categoria=${this.categoria}&marca=${this.marca}`).then(response=>{
+      this.$http.post(`http://localhost:8000/productos/create?id=${this.id}&nombre=${this.nombre}&categoria=${this.dict1[this.categoria]}&marca=${this.dict2[this.marca]}`).then(response=>{
       //this.id = '';
       this.nombre = '';
       this.categoria = '';
