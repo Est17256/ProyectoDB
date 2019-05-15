@@ -89,29 +89,28 @@ class FakeControle extends Controller
                 $facturas = new facturas;
                 $facturas->fecha = $faker->date;
                 $facturas->hora = $faker->time;
-                $facturas->total = 10;
+                $facturas->total = 0;
                 $facturas->id_clientes = $clientesR;
                 $facturas->save();
                 $facturasR=facturas::all()->random();
                 $facturasR=$facturasR->id;
                 #$productosR=productos::all()->random();
                 #$productosR=$productosR->id;
+                $calculo=0;
                 for($i=0;$i<3;$i++)
                     {   
-                        $calculo=0;
                         $productosR=productos::all()->random();
                         $productosR=$productosR->id;
                         $lineaF = new linea_factura;
-                        $lineaF->precio =10; 
+                        $lineaF->precio =2; 
                         $lineaF->cantidad = 10;
-                        $lineaF->id_facturas =$facturasR;
+                        $lineaF->id_facturas =$facturas->id;
                         $lineaF->id_productos = $productosR;
                         $lineaF->save();
-                        $calculo=$lineaF->precio*$lineaF->cantidad;
-                        $calc=factura::find($facturasR);
-                        $calc->total = $calculo;
-                        $calc->save();
+                        $calculo+=$lineaF->precio*$lineaF->cantidad;
                     }
+                    $facturas->total = $calculo;
+                    $facturas->save();
 
             }
         return response()->json([
