@@ -7,22 +7,22 @@
           <b-row class="justify-content-md-center">
             <b-col>
             <label for="nameInput">ID</label>
-            <input id="nameInput" type="text" v-model="id" class="form-control" placeholder="ID">
+            <input id="nameInput" type="text" v-model="id" class="form-control" >
             </b-col>
 
             <b-col>
             <label for="nameInput">Fecha</label>
-            <input id="nameInput" type="text" v-model="fecha" class="form-control" placeholder="Fecha">
+            <input id="nameInput" type="text" v-model="fecha" class="form-control" >
             </b-col>
 
             <b-col>
             <label for="nameInput">Hora</label>
-            <input id="nameInput" type="text" v-model="hora" class="form-control" placeholder="Hora">
+            <input id="nameInput" type="text" v-model="hora" class="form-control" >
             </b-col>
 
             <b-col>
             <label for="nameInput">Total</label>
-            <input id="nameInput" type="text" v-model="total" class="form-control" placeholder="Total">
+            <input id="nameInput" type="text" v-model="total" class="form-control" >
             </b-col>
 
             <b-col>
@@ -36,7 +36,7 @@
             </b-col>
 
             <b-col>
-            <button type="button" class="btn btn-lg btn-warning btn-block" >Crear</button>
+            <button type="button" class="btn btn-lg btn-warning btn-block"  v-on:click="crear">Crear</button>
             </b-col>
           </b-row>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="agregar">Linea Nueva</button>
@@ -46,7 +46,7 @@
           <b-row class="justify-content-md-center">
             <b-col>
             <label for="nameInput">ID Linea</label>
-            <input id="nameInput" type="text" v-model="line.id_line" class="form-control" placeholder="ID Linea">
+            <input id="nameInput" type="text" v-model="line.id_line" class="form-control" >
             </b-col>
 
             <b-col>
@@ -61,12 +61,12 @@
 
             <b-col>
             <label for="nameInput">Cantidad</label>
-            <input id="nameInput" type="text"  v-model="line.cantidad" class="form-control" placeholder="Cantidad">
+            <input id="nameInput" type="text"  v-model="line.cantidad" class="form-control" >
             </b-col>
 
             <b-col>
             <label for="nameInput">Precio</label>
-            <input id="nameInput" type="text"   v-model="line.precio" class="form-control" placeholder="Precio">
+            <input id="nameInput" type="text"   v-model="line.precio" class="form-control" >
             </b-col>
 
             <b-col>
@@ -94,7 +94,7 @@ export default {
       console.log(this.productos);
       console.log(this.hola1[0]);
       this.productos.forEach(a=>this.hola1.push(a.nombre))
-      
+
     });
 
     this.$http.get("http://localhost:8000/clientes").then(response => {
@@ -107,6 +107,7 @@ export default {
   },
   data() {
     return {
+      contador: 1,
       picked: "",
       productosItem:[],
       productos:[],
@@ -114,39 +115,35 @@ export default {
       hola1:[],
       fecha:'',
       hora:'',
-      total:'',
-      lines:[{
-        id_line : 1,
-        producto : 'bola',
-        cantidad : 5,
-        precio : 69.9
-      }],
+      total:0,
+      lines:[],
       nombre:'',
       id:'',
       name:'',
-      email:'',
-      password:'',
       selected:'',
       temporal1:[],
-      temporal2:[],
-      user: [],
-      headers: [
-        { text: "ID", align: "center", value: "ID" },
-        { text: "Nombre", align: "center", value: "Nombre" },
-        { text: "Correo", align: "center", value: "Correo" },
-        { text: "DPI", align: "center", value: "DPI" }
-      ]
+      temporal2:[]
     };
   },
   methods:{
     agregar(){
+      this.contador
       this.lines.push({
-        id_line : null,
+        id_line : this.contador,
         producto : null,
         cantidad : null,
         precio : null
 
       });
+
+      this.contador = this.contador + 1;
+    },
+
+    crear(){
+    this.total = 0;
+      for (var i = 0; i < this.lines.length; i++){
+        this.total = this.total + (this.lines[i].cantidad * this.lines[i].precio);
+      }
     }
   }
 };
