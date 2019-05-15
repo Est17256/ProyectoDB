@@ -28,7 +28,7 @@
             <b-col>
             <v-flex xs12>
               <v-combobox
-                v-model="selectClie"
+                
                 :items="clientes"
                 label="Cliente"
               ></v-combobox>
@@ -36,7 +36,7 @@
             </b-col>
 
             <b-col>
-            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear">Crear</button>
+            <button type="button" class="btn btn-lg btn-warning btn-block" >Crear</button>
             </b-col>
           </b-row>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="agregar">Linea Nueva</button>
@@ -46,13 +46,13 @@
           <b-row class="justify-content-md-center">
             <b-col>
             <label for="nameInput">ID Linea</label>
-            <input id="nameInput" type="text" v-model="idL" class="form-control" placeholder="ID Linea">
+            <input id="nameInput" type="text"  class="form-control" placeholder="ID Linea">
             </b-col>
 
             <b-col>
             <v-flex xs12>
               <v-combobox
-                v-model="selectProd"
+              
                 :items="productos"
                 label="Producto"
               ></v-combobox>
@@ -61,12 +61,12 @@
 
             <b-col>
             <label for="nameInput">Cantidad</label>
-            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Cantidad">
+            <input id="nameInput" type="text"  class="form-control" placeholder="Cantidad">
             </b-col>
 
             <b-col>
             <label for="nameInput">Precio</label>
-            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Precio">
+            <input id="nameInput" type="text"  class="form-control" placeholder="Precio">
             </b-col>
 
             <b-col>
@@ -111,6 +111,9 @@ export default {
       picked: "",
       productos:[],
       clientes:[],
+      fecha:'',
+      hora:'',
+      total:'',
       lines:[1,2,3],
       nombre:'',
       id:'',

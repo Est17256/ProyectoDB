@@ -15,8 +15,8 @@ class GustavoController extends Controller
         $productos = new productos;
         $productos->id = $request->id;
         $productos->nombre = $request->nombre;
-        $productos->categoria = $request->categoria;
-        $productos->marca = $request->marca;
+        $productos->id_categorias = $request->categoria;
+        $productos->id_marcas = $request->marca;
         $productos->save();
 
         return response()->json([
