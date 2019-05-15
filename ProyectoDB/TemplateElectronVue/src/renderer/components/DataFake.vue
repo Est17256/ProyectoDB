@@ -1,12 +1,13 @@
 <template>
   <div class="grey--text text--darken-2">
-    <h1 class="text-center">Generar Factura</h1>
+    <h1 class="text-center">Generar Datos Falsos</h1>
     <div>
       <label for="nameInput">ID</label>
       <input id="nameInput" type="date" v-model="id" class="form-control" placeholder="ID">
     <b-col>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Users">Users</button>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="crear">crear</button>
+            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="fecha">Fecha</button>
     </b-col>
     </div>
   </div>
@@ -25,6 +26,7 @@ export default {
     data () {
       return {
         id:'',
+        fecha:'',
         hola:[],
         user:[],
         select: 'Programming',
@@ -47,9 +49,13 @@ export default {
         crear(){
            this.$http.post("http://localhost:8000/users/createFaker").then(response => {
            this.refreshUsers();
+           console.log(this.id)
             });
+        },
+        fecha(){
+
+          console.log(this.id)
         }
-        
         }
         
 };
