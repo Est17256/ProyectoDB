@@ -28,7 +28,7 @@
             <b-col>
             <v-flex xs12>
               <v-combobox
-                v-model="selectClie"
+
                 :items="clientes"
                 label="Cliente"
               ></v-combobox>
@@ -36,7 +36,7 @@
             </b-col>
 
             <b-col>
-            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear">Crear</button>
+            <button type="button" class="btn btn-lg btn-warning btn-block" >Crear</button>
             </b-col>
           </b-row>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="agregar">Linea Nueva</button>
@@ -46,14 +46,14 @@
           <b-row class="justify-content-md-center">
             <b-col>
             <label for="nameInput">ID Linea</label>
-            <input id="nameInput" type="text" v-model="idL" class="form-control" placeholder="ID Linea">
+            <input id="nameInput" type="text" v-model="line.id_line" class="form-control" placeholder="ID Linea">
             </b-col>
 
             <b-col>
             <v-flex xs12>
               <v-combobox
-                v-model="selectProd"
-                :items="productos"
+                 v-model="line.producto"
+                :items="hola1"
                 label="Producto"
               ></v-combobox>
             </v-flex>
@@ -61,12 +61,12 @@
 
             <b-col>
             <label for="nameInput">Cantidad</label>
-            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Cantidad">
+            <input id="nameInput" type="text"  v-model="line.cantidad" class="form-control" placeholder="Cantidad">
             </b-col>
 
             <b-col>
             <label for="nameInput">Precio</label>
-            <input id="nameInput" type="text" v-model="cantidad" class="form-control" placeholder="Precio">
+            <input id="nameInput" type="text"   v-model="line.precio" class="form-control" placeholder="Precio">
             </b-col>
 
             <b-col>
@@ -88,37 +88,47 @@
 <script>
 export default {
   mounted() {
-    this.$http.get("http://localhost:8000/users").then(response => {
-      this.user = response.data.users;
-    });
 
-    this.$http.get("http://localhost:8000/categorias").then(response => {
-      this.temporal = response.data.clientes;
-      this.temporal.forEach(a=>this.clientes.push(a.nombre))
-
+    this.$http.get("http://localhost:8000/productos").then(response => {
+      this.productos = response.data.productos;
+      console.log(this.productos);
+      console.log(this.hola1[0]);
+      this.productos.forEach(a=>this.hola1.push(a.nombre))
+      
     });
 
     this.$http.get("http://localhost:8000/clientes").then(response => {
-      this.temporal = response.data.clientes;
-      this.temporal.forEach(a=>this.clientes.push(a.nombre))
+      this.temporal2 = response.data.clientes;
+      this.temporal2.forEach(a=>this.clientes.push(a.nombre))
 
     });
 
-    this.agregar();
+    //this.agregar();
   },
   data() {
     return {
       picked: "",
+      productosItem:[],
       productos:[],
       clientes:[],
-      lines:[1,2,3],
+      hola1:[],
+      fecha:'',
+      hora:'',
+      total:'',
+      lines:[{
+        id_line : 1,
+        producto : 'bola',
+        cantidad : 5,
+        precio : 69.9
+      }],
       nombre:'',
       id:'',
       name:'',
       email:'',
       password:'',
       selected:'',
-      temporal:[],
+      temporal1:[],
+      temporal2:[],
       user: [],
       headers: [
         { text: "ID", align: "center", value: "ID" },
@@ -130,8 +140,13 @@ export default {
   },
   methods:{
     agregar(){
-      this.lines.push(1);
-      console.log(this.lines);
+      this.lines.push({
+        id_line : null,
+        producto : null,
+        cantidad : null,
+        precio : null
+
+      });
     }
   }
 };
