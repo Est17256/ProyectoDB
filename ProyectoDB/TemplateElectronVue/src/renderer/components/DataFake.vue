@@ -53,7 +53,7 @@ export default {
            console.log(this.id)});
           },
         fecha2(){
-          this.$http.get("http://localhost:8000/categoriasF").then(response => {
+          this.$http.get("http://localhost:8000/categoriasF2").then(response => {
             this.categoria = response.data.categorias;
             console.log(this.categoria);
           });

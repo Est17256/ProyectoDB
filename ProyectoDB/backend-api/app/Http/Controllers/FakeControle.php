@@ -65,11 +65,11 @@ class FakeControle extends Controller
                 $marcas->save();
                 #Categoria
                 $categorias = new categorias;
-                $categorias->nombre = $request->word;
+                $categorias->nombre = $faker->word;
                 $categorias->save();
                 #Clientes
                 $clientes = new clientes;
-                $clientes->nombre = $request->nombre;
+                $clientes->nombre = $faker->name;
                 $clientes->save();
                 #Productos
                 $hola=categorias::all()->random();
@@ -77,7 +77,7 @@ class FakeControle extends Controller
                 $hola2=marcas::all()->random();;
                 $hola2=$hola2->id;
                 $productos = new productos;
-                $productos->nombre = $faker->name;
+                $productos->nombre = $faker->word;
                 $productos->id_categorias = $hola;
                 $productos->id_marcas = $hola2;
                 $productos->save();
@@ -87,22 +87,30 @@ class FakeControle extends Controller
                 $clientesR=clientes::all()->random();
                 $clientesR=$clientesR->id;
                 $facturas = new facturas;
-                $facturas->fecha = $faker->name;
+                $facturas->fecha = $faker->date;
                 $facturas->hora = $faker->time;
-                $facturas->total = $hola;
+                $facturas->total = 10;
                 $facturas->id_clientes = $clientesR;
                 $facturas->save();
                 $facturasR=facturas::all()->random();
                 $facturasR=$facturasR->id;
-                $productosR=productos::all()->random();
-                $productosR=$productosR->id;
-                for($x=0;$x<3;$x++)
-                    {
+                #$productosR=productos::all()->random();
+                #$productosR=$productosR->id;
+                for($i=0;$i<3;$i++)
+                    {   
+                        $calculo=0;
+                        $productosR=productos::all()->random();
+                        $productosR=$productosR->id;
                         $lineaF = new linea_factura;
-                        $lineaF->precio =$faker->name; 
-                        $lineaF->cantidad = $faker->name;
+                        $lineaF->precio =10; 
+                        $lineaF->cantidad = 10;
                         $lineaF->id_facturas =$facturasR;
                         $lineaF->id_productos = $productosR;
+                        $lineaF->save();
+                        $calculo=$lineaF->precio*$lineaF->cantidad;
+                        $calc=factura::find($facturasR);
+                        $calc->total = $calculo;
+                        $calc->save();
                     }
 
             }
