@@ -28,7 +28,7 @@
             <b-col>
             <v-flex xs12>
               <v-combobox
-                
+
                 :items="clientes"
                 label="Cliente"
               ></v-combobox>
@@ -46,13 +46,13 @@
           <b-row class="justify-content-md-center">
             <b-col>
             <label for="nameInput">ID Linea</label>
-            <input id="nameInput" type="text"  class="form-control" placeholder="ID Linea">
+            <input id="nameInput" type="text" v-model="line.id_line" class="form-control" placeholder="ID Linea">
             </b-col>
 
             <b-col>
             <v-flex xs12>
               <v-combobox
-              
+                 v-model="line.producto"
                 :items="productos"
                 label="Producto"
               ></v-combobox>
@@ -61,12 +61,12 @@
 
             <b-col>
             <label for="nameInput">Cantidad</label>
-            <input id="nameInput" type="text"  class="form-control" placeholder="Cantidad">
+            <input id="nameInput" type="text"  v-model="line.cantidad" class="form-control" placeholder="Cantidad">
             </b-col>
 
             <b-col>
             <label for="nameInput">Precio</label>
-            <input id="nameInput" type="text"  class="form-control" placeholder="Precio">
+            <input id="nameInput" type="text"   v-model="line.precio" class="form-control" placeholder="Precio">
             </b-col>
 
             <b-col>
@@ -104,7 +104,7 @@ export default {
 
     });
 
-    this.agregar();
+    //this.agregar();
   },
   data() {
     return {
@@ -114,7 +114,12 @@ export default {
       fecha:'',
       hora:'',
       total:'',
-      lines:[1,2,3],
+      lines:[{
+        id_line : 1,
+        producto : 'bola',
+        cantidad : 5,
+        precio : 69.9
+      }],
       nombre:'',
       id:'',
       name:'',
@@ -133,8 +138,13 @@ export default {
   },
   methods:{
     agregar(){
-      this.lines.push(1);
-      console.log(this.lines);
+      this.lines.push({
+        id_line : null,
+        producto : null,
+        cantidad : null,
+        precio : null
+
+      });
     }
   }
 };
