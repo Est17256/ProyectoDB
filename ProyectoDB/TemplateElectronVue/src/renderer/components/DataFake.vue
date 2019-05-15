@@ -7,7 +7,7 @@
     <b-col>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Users">Users</button>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="crear">crear</button>
-            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="fecha">Fecha</button>
+            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="fecha2">Fecha</button>
     </b-col>
     </div>
   </div>
@@ -28,6 +28,7 @@ export default {
         id:'',
         fecha:'',
         hola:[],
+        categoria: [],
         user:[],
         select: 'Programming',
       }
@@ -49,14 +50,15 @@ export default {
         crear(){
            this.$http.post("http://localhost:8000/users/createFaker").then(response => {
            this.refreshUsers();
-           console.log(this.id)
-            });
-        },
-        fecha(){
-
-          console.log(this.id)
+           console.log(this.id)});
+          },
+        fecha2(){
+          this.$http.get("http://localhost:8000/categoriasF").then(response => {
+            this.categoria = response.data.categorias;
+            console.log(this.categoria);
+          });
         }
-        }
+      }
         
 };
 </script>

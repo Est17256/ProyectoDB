@@ -14,7 +14,6 @@ class LuisController extends Controller
         #$categorias->id = $request->id;
         $categorias->nombre = $request->nombre;
         $categorias->save();
-
         return response()->json([
             'success' => true,
             'message' => 'creado'
@@ -23,7 +22,7 @@ class LuisController extends Controller
     public function createMar(Request $request)
     {    
         $marcas = new marcas;
-        $marcas->id = $request->id;
+        #$marcas->id = $request->id;
         $marcas->nombre = $request->nombre;
         $marcas->save();
 

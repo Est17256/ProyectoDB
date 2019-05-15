@@ -13,7 +13,7 @@ class LineaFactura extends Migration
      */
     public function up()
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('linea_factura', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('cantidad');
             $table->bigInteger('precio');

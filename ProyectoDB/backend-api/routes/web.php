@@ -39,6 +39,8 @@ $router->post('/valoropcional/create', 'GustavoController@createValOp');
 //$router->get('/datosVarios', 'LuisController@getAll');
 
 $router->get('/categorias', 'LuisController@getCat');
+$router->get('/categoriasF', 'FakeControle@getCatF');
+$router->post('/categoriasF2', 'FakeControle@createProdF');
 $router->get('/marcas', 'LuisController@getMar');
 $router->get('/clientes', 'LuisController@getCli');
 $router->get('/productos', 'GustavoController@getPro');

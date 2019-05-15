@@ -105,7 +105,9 @@ export default {
     refreshUsers(){
       this.$http.get("http://localhost:8000/categorias").then(response => {
       this.categoria = response.data.categorias;
+      console.log(this.categorias);
     });
+    console.log(this.categoria);
     this.$http.get("http://localhost:8000/marcas").then(response => {
       this.marca = response.data.marcas;
     });
@@ -122,7 +124,7 @@ export default {
         });
       }
       if (this.selected=="Marca") {
-        this.$http.post(`http://localhost:8000/marcas/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
+        this.$http.post(`http://localhost:8000/marcas/create?nombre=${this.nombre}`).then(response=>{
         this.refreshUsers();
         this.id = '';
         this.nombre = '';
