@@ -96,7 +96,7 @@ class GustavoController extends Controller
     {   
         $facturas = new facturas;
         
-        $facturas->id = $request->id;
+        #$facturas->id = $request->id;
         $facturas->fecha = $request->fecha;
         $facturas->hora = $request->hora;
         $facturas->total = $request->total;

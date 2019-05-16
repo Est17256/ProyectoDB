@@ -189,7 +189,7 @@ export default {
       var id_clientes = this.cliente
       
       //Crear factura
-      this.$http.post(`http://localhost:8000/facturas/create?id=${this.id}&fecha=${this.fecha}&hora=${this.hora}&total=${this.total}&id_clientes=${this.dict2[id_clientes]}`).then(response=>{
+      this.$http.post(`http://localhost:8000/facturas/create?fecha=${this.fecha}&hora=${this.hora}&total=${this.total}&id_clientes=${this.dict2[id_clientes]}`).then(response=>{
       //this.id = '';
       this.nombre = '';
       this.categoria = '';
