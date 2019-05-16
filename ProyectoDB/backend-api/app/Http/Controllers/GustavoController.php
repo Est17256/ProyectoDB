@@ -89,5 +89,60 @@ class GustavoController extends Controller
             'message'=>'Funciono',
         ], 200);
     }
+    public function createFac(Request $request)
+    {   
+        $facturas = new facturas;
+        
+        $facturas->id = $request->id;
+        $facturas->fecha = $request->fecha;
+        $facturas->hora = $request->hora;
+        $facturas->total = $request->total;
+        $facturas->id_clientes = $request->id_clientes;
+        $facturas->save();
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'creado'
+        ], 200);
+    }
+    public function getFac() {
+        $facturas = facturas::all();
+        $facturas= $facturas;
 
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'facturas' => $facturas,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    public function createLinFac(Request $request)
+    {   
+        $linea_facturas = new linea_facturas;
+        
+        $linea_facturas->id = $request->id;
+        $linea_facturas->cantidad = $request->cantidad;
+        $linea_facturas->precio = $request->precio;
+        $linea_facturas->id_facturas = $request->id_facturas;
+        $linea_facturas->id_productos = $request->id_productos;
+        $linea_facturas->save();
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'creado'
+        ], 200);
+    }
+    public function getLinFac() {
+        $linea_facturas = facturas::all();
+        $linea_facturas = $linea_facturas;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'linea_facturas' => $linea_facturas,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    
+    
 }
