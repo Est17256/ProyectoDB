@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\productos;
 use App\opcional;
 use App\valoropcional;
+use App\facturas;
+use App\linea_factura;
+
 
 class GustavoController extends Controller
 {
@@ -118,14 +121,14 @@ class GustavoController extends Controller
     }
     public function createLinFac(Request $request)
     {   
-        $linea_facturas = new linea_facturas;
+        $linea_factura = new linea_factura;
         
-        $linea_facturas->id = $request->id;
-        $linea_facturas->cantidad = $request->cantidad;
-        $linea_facturas->precio = $request->precio;
-        $linea_facturas->id_facturas = $request->id_facturas;
-        $linea_facturas->id_productos = $request->id_productos;
-        $linea_facturas->save();
+        $linea_factura->id = $request->id;
+        $linea_factura->cantidad = $request->cantidad;
+        $linea_factura->precio = $request->precio;
+        $linea_factura->id_facturas = $request->id_facturas;
+        $linea_factura->id_productos = $request->id_productos;
+        $linea_factura->save();
         
         return response()->json([
             'success' => true,
@@ -133,13 +136,13 @@ class GustavoController extends Controller
         ], 200);
     }
     public function getLinFac() {
-        $linea_facturas = facturas::all();
-        $linea_facturas = $linea_facturas;
+        $linea_factura = facturas::all();
+        $linea_factura = $linea_factura;
 
         #echo "Probando...";
         return response()->json([
             'success' => true,
-            'linea_facturas' => $linea_facturas,
+            'linea_factura' => $linea_factura,
             'message'=>'Funciono',
         ], 200);
     }
