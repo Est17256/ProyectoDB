@@ -35,6 +35,8 @@ $router->post('/clientes/create', 'LuisController@createCli');
 $router->post('/productos/create', 'GustavoController@createPro');
 $router->post('/opcional/create', 'GustavoController@createOpc');
 $router->post('/valoropcional/create', 'GustavoController@createValOp');
+$router->post('/facturas/create', 'GustavoController@createFac');
+$router->post('/linea_factura/create', 'GustavoController@createLinFac');
 
 //$router->get('/datosVarios', 'LuisController@getAll');
 
@@ -46,6 +48,8 @@ $router->get('/clientes', 'LuisController@getCli');
 $router->get('/productos', 'GustavoController@getPro');
 $router->get('/opcional', 'GustavoController@getOpc');
 $router->get('/valoropcional', 'GustavoController@getValOp');
+$router->get('/linea_factura', 'GustavoController@getLinFac');
+$router->get('/facturas', 'GustavoController@getFac');
 
 
 //$router->delete('/users/destroy','ExampleController@destroy');
