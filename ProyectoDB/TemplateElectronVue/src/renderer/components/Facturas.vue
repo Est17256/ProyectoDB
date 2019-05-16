@@ -157,9 +157,7 @@ export default {
       var hora = this.hora;
       var total = this.total;
       var id_clientes = this.cliente
-      //console.log('aaaaaaaaaaaa');
-      //console.log(id_clientes);
-      //console.log(this.dict2[id_clientes]);
+      
       //Crear factura
       this.$http.post(`http://localhost:8000/facturas/create?id=${this.id}&fecha=${this.fecha}&hora=${this.hora}&total=${this.total}&id_clientes=${this.dict2[id_clientes]}`).then(response=>{
       //this.id = '';
@@ -171,17 +169,19 @@ export default {
       //Variables de linea de factura
       for (var i = 0; i < this.lines.length; i++){
         id = this.lines[i].id_line;
-        //console.log(id);
+      //  console.log(id);
         var cantidad = this.lines[i].cantidad;
-        //console.log(cantidad);
+       // console.log(cantidad);
         var precio = this.lines[i].precio;
         //console.log(precio);
         var id_facturas = this.id;
-        var id_productos = this.lines[i].id_producto;
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaa");
-        console.log(this.lines[i]);
-        console.log(this.lines[i].id_producto);
-        console.log(id_productos);
+        //console.log(id_facturas);
+        var id_productos = this.lines[i].producto;
+        //console.log(this.lines[0].producto);
+        //console.log(this.dict1);
+        //console.log(this.dict1['Mercurial']);
+        //console.log(this.lines[i].id_productos);
+        //console.log(id_productos);
         //Crear linea de factura
         this.$http.post(`http://localhost:8000/linea_factura/create?id=${id}&cantidad=${cantidad}&precio=${precio}&id_facturas=${id_facturas}&id_productos=${this.dict1[id_productos]}`).then(response=>{        
         });
