@@ -12,12 +12,12 @@
 
             <b-col>
             <label for="nameInput">Fecha</label>
-            <input id="nameInput" type="text" v-model="fecha" class="form-control" >
+            <input id="nameInput" type="date" v-model="fecha" class="form-control" >
             </b-col>
 
             <b-col>
             <label for="nameInput">Hora</label>
-            <input id="nameInput" type="text" v-model="hora" class="form-control" >
+            <input id="nameInput" type="time" v-model="hora" class="form-control" >
             </b-col>
 
             <b-col>
@@ -28,7 +28,7 @@
             <b-col>
             <v-flex xs12>
               <v-combobox
-
+                v-model="cliente"
                 :items="clientes"
                 label="Cliente"
               ></v-combobox>
@@ -109,6 +109,7 @@ export default {
     return {
       contador: 1,
       picked: "",
+      cliente: '',
       productosItem:[],
       productos:[],
       clientes:[],
@@ -144,6 +145,24 @@ export default {
       for (var i = 0; i < this.lines.length; i++){
         this.total = this.total + (this.lines[i].cantidad * this.lines[i].precio);
       }
+      //Variables de factura
+      var id = this.id;
+      var fecha = this.fecha;
+      var hora = this.hora;
+      var total = this.total;
+      var id_clientes = this.cliente
+      //Crear factura
+      //Variables de linea de factura
+      for (var i = 0; i < this.lines.length; i++){
+        id = this.lines[i].id_line;
+        var cantidad = this.lines[i].cantidad;
+        var precio = this.lines[i].precio;
+        var id_facturas = this.id;
+        var id_productos = this.lines[i].id_producto;
+        //Crear linea de factura
+
+      }
+
     }
   }
 };
