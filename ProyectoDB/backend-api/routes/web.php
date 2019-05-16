@@ -23,10 +23,7 @@ $router->get('/', function () use ($router) {
 // luego, el primer parametro es la ruta a la que se va a responder
 // y el segundo parametro es el controlador y el nombre del metodo que
 // responde a esa ruta: NombreControlador@nombreMetodo
-//$router->get('/test', 'ExampleController@index');
-//$router->get('/categorias', 'ExampleController@getCat');
-//$router->get('/users/table', 'ExampleController@CreatT');
-//$router->post('/message', 'ExampleController@postExample');
+
 
 //Funciones para creaciones varias
 $router->post('/categorias/create', 'LuisController@createCat');
@@ -37,8 +34,6 @@ $router->post('/opcional/create', 'GustavoController@createOpc');
 $router->post('/valoropcional/create', 'GustavoController@createValOp');
 $router->post('/facturas/create', 'GustavoController@createFac');
 $router->post('/linea_factura/create', 'GustavoController@createLinFac');
-
-//$router->get('/datosVarios', 'LuisController@getAll');
 
 $router->get('/categorias', 'LuisController@getCat');
 $router->get('/categoriasF', 'FakeControle@getCatF');
@@ -52,11 +47,10 @@ $router->get('/facturas2', 'LuisController@getFac');
 $router->get('/lineas', 'LuisController@getLin');
 $router->get('/linea_factura', 'GustavoController@getLinFac');
 $router->get('/facturas', 'GustavoController@getFac');
+$router->get('/opcional2', 'LuisController@getOpc');
+$router->get('/productos2', 'LuisController@getPro');
+$router->get('/valoropcional2', 'LuisController@getVOpc');
 
 
-//$router->delete('/users/destroy','ExampleController@destroy');
-//$router->post('/users/create', 'ExampleController@store');
 $router->post('/users/createFaker', 'FakeControle@storeFaker');
 $router->get('/users/Faker', 'FakeControle@getUsersF');
-//$router->put('/users/update', 'ExampleController@update');
-//$router->delete('/users/{id}','ExampleController@destroy');

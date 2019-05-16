@@ -84,7 +84,7 @@
     </v-content>
     <v-footer color="#3A4750">
         <v-spacer></v-spacer>
-        <div class="pa-3 accent--text">Fundanier</div>
+        <div class="pa-3 accent--text">ProyectoDB</div>
     </v-footer>
   </v-app>
 </template>
@@ -102,11 +102,6 @@ export default {
   },
 
     methods: {
-        logout(){
-            this.$http.post('http://localhost:8000/logout').then((response) => {
-                this.$router.push('/login');
-            });
-        }
     }
 }
 </script>

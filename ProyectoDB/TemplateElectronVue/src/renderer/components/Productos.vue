@@ -1,7 +1,23 @@
 <template lang="">
   <div class="grey--text text--darken-2">
     <h1 class="text-center">Crear Producto</h1>
-    <br><br><br><br><br>
+    <br>
+    <div>
+      <b-container class="bv-example-row2">
+        <b-row class="justify-content-md-center">
+          <b-col>
+            <v-data-table :headers="headersPro" :items="productos2" class="elevation-1">
+              <template v-slot:items="props">
+                <td class="text-xs-center">{{ props.item.id }}</td>
+                <td class="text-xs-center">{{ props.item.nombre }}</td>
+                <td class="text-xs-center">{{ props.item.id_categorias }}</td>
+                <td class="text-xs-center">{{ props.item.id_marcas }}</td>
+              </template>
+            </v-data-table>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
     <div>
       <b-container class="bv-example-row2">
         <b-row class="justify-content-md-center">
@@ -21,7 +37,7 @@
                 :items="hola3"
                 label="Categoria"
               ></v-combobox>
-              <br><br><br><br><br><br><br><br><br>
+              <br><br><br><br><br><br><br>
               <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear">Crear</button>
             </v-flex>
           </b-col>
@@ -48,6 +64,9 @@
 <script>
 export default {
   mounted() {
+    this.$http.get("http://localhost:8000/productos2").then(response => {
+      this.productos2 = response.data.productos;
+    });
     this.$http.get("http://localhost:8000/categorias").then(response => {
       this.categorias = response.data.categorias;
       this.categorias.forEach(a=>this.hola3.push(a.nombre))
@@ -88,6 +107,7 @@ export default {
         hola4:[],
         user:[],
         productos:[],
+        productos2:[],
         categorias:[],
         dict1:[],
         dict2:[],
@@ -95,6 +115,12 @@ export default {
         cantidad:[],
         nombre_campo:[],
         valor:[],
+        headersPro: [
+        { text: "ID", align: "center",sortable: false, value: "ID" },
+        { text: "Nombre", align: "center",sortable: false, value: "Fecha" },
+        { text: "ID Categoria", align: "center",sortable: false, value: "ID Categoria" },
+        { text: "ID Marca", align: "center",sortable: false, value: "ID Marca" }
+        ],
         id_campo:[],
         select: 'Categoria',
         marca:'',

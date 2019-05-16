@@ -9,6 +9,8 @@ use App\clientes;
 use App\facturas;
 use App\linea_factura;
 use App\productos;
+use App\opcional;
+use App\valoropcional;
 class LuisController extends Controller
 {
     public function createCat(Request $request)
@@ -100,4 +102,38 @@ class LuisController extends Controller
             'message'=>'Funciono',
         ], 200);
     }
+    public function getPro() {
+        $productos = productos::all();
+        $productos= $productos;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'productos' => $productos,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    public function getOpc() {
+        $opcionals = opcional::all();
+        $opcionals= $opcionals;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'opcionals' => $opcionals,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    public function getVOpc() {
+        $valoropcionals = valoropcional::all();
+        $valoropcionals= $valoropcionals;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'valoropcionals' => $valoropcionals,
+            'message'=>'Funciono',
+        ], 200);
+    }
+
 }

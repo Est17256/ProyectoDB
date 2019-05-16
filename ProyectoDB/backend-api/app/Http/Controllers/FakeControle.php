@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\datafake;
 use App\categorias;
 use App\marcas;
 use App\clientes;

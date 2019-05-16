@@ -39,7 +39,7 @@ export default {
     this.$http.get("http://localhost:8000/lineas").then(response => {
       this.linea = response.data.lineas;
     });
-    this.$http.get("http://localhost:8000/facturas").then(response => {
+    this.$http.get("http://localhost:8000/facturas2").then(response => {
       this.factura = response.data.facturas;
     });
     this.$http.get("http://localhost:8000/clientes").then(response => {
