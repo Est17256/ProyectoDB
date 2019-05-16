@@ -54,6 +54,10 @@ const routes = [
   {
     path: '/DataFake',
     component: Vue.component('DataFake', require('./components/DataFake.vue').default)
+  },
+  {
+    path: '/VFacturas',
+    component: Vue.component('VFacturas', require('./components/VFacturas.vue').default)
   }
 ];
 

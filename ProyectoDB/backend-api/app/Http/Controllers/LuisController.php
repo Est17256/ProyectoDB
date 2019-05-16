@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\categorias;
 use App\marcas;
 use App\clientes;
+use App\facturas;
+use App\linea_factura;
+use App\productos;
 class LuisController extends Controller
 {
     public function createCat(Request $request)
@@ -72,6 +75,28 @@ class LuisController extends Controller
         return response()->json([
             'success' => true,
             'clientes' => $clientes,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    public function getFac() {
+        $facturas = facturas::all();
+        $facturas= $facturas;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'facturas' => $facturas,
+            'message'=>'Funciono',
+        ], 200);
+    }
+    public function getLin() {
+        $linea_factura = linea_factura::all();
+        $linea_factura= $linea_factura;
+
+        #echo "Probando...";
+        return response()->json([
+            'success' => true,
+            'lineas' => $linea_factura,
             'message'=>'Funciono',
         ], 200);
     }

@@ -46,6 +46,8 @@ $router->get('/clientes', 'LuisController@getCli');
 $router->get('/productos', 'GustavoController@getPro');
 $router->get('/opcional', 'GustavoController@getOpc');
 $router->get('/valoropcional', 'GustavoController@getValOp');
+$router->get('/facturas', 'LuisController@getFac');
+$router->get('/lineas', 'LuisController@getLin');
 
 
 //$router->delete('/users/destroy','ExampleController@destroy');
