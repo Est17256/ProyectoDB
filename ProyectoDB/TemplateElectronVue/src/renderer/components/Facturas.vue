@@ -3,7 +3,7 @@
     <h1 class="text-center">Crear Factura</h1>
     <br><br><br><br><br>
     <div>
-    <b-container class="bv-example-row2">
+    <b-container class="bv-example-row">
           <b-row class="justify-content-md-center">
             <b-col>
             <label for="nameInput">ID</label>

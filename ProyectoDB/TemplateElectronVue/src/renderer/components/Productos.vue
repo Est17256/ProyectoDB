@@ -12,8 +12,11 @@
                 <td class="text-xs-center">{{ props.item.nombre }}</td>
                 <td class="text-xs-center">{{ props.item.id_categorias }}</td>
                 <td class="text-xs-center">{{ props.item.id_marcas }}</td>
+                <td v-for="op in dict3[props.item.id]" class="text-xs-center">{{ op }}</td>
+
               </template>
             </v-data-table>
+            
           </b-col>
         </b-row>
       </b-container>
@@ -66,20 +69,31 @@ export default {
   mounted() {
     this.$http.get("http://localhost:8000/productos2").then(response => {
       this.productos2 = response.data.productos;
+
+    });
+
+    this.$http.get("http://localhost:8000/valoropcional").then(response => {
+      this.valores = response.data.valoropcional;
+      this.valores.forEach(a=>this.dict3[a.id]=[])
+      this.valores.forEach(a=>this.dict3[a.id].push(a.valor))
     });
     this.$http.get("http://localhost:8000/categorias").then(response => {
       this.categorias = response.data.categorias;
       this.categorias.forEach(a=>this.hola3.push(a.nombre))
       this.categorias.forEach(a=>this.dict1[a.nombre]=a.id)
+      this.categorias.forEach(a=>this.dict4[a.id]=a.nombre)
 
     });
     this.$http.get("http://localhost:8000/marcas").then(response => {
       this.marcas = response.data.marcas;
       this.marcas.forEach(a=>this.hola4.push(a.nombre))
       this.marcas.forEach(a=>this.dict2[a.nombre]=a.id)
+      this.marcas.forEach(a=>this.dict5[a.id]=a.nombre)
+      
     });
     this.$http.get("http://localhost:8000/opcional").then(response => {
       this.cantidad = response.data.opcional;
+      this.cantidad.forEach(a=>this.headersPro.push( { text: a.nombre, align: "center",sortable: false, value: a.nombre }))
       var i;
       this.cantidad.forEach(a=>this.id_campo.push(a.id))
       for (i = 0; i < this.cantidad.length; i++){
@@ -88,10 +102,7 @@ export default {
 
       }
       this.cantidad.forEach(a=>this.nombre_campo.push(a.nombre));
-      console.log(this.nombre_campo);
-      console.log(this.id_campo);
-      console.log(this.valor);
-      console.log(this.dict);
+      console.log(this.headersPro);
     });
    },
 
@@ -106,11 +117,15 @@ export default {
         hola3:[],
         hola4:[],
         user:[],
+        valores:[],
         productos:[],
         productos2:[],
         categorias:[],
         dict1:[],
         dict2:[],
+        dict3:[],
+        dict4:[],
+        dict5:[],
         contadorOp:[],
         cantidad:[],
         nombre_campo:[],

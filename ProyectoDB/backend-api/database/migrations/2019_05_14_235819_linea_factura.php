@@ -15,7 +15,7 @@ class LineaFactura extends Migration
     {
         Schema::create('linea_factura', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-            $table->integer('id')->unsigned();;
+            $table->increments('id')->unsigned();;
             $table->bigInteger('cantidad');
             $table->bigInteger('precio');
             $table->integer('id_facturas')->unsigned();
