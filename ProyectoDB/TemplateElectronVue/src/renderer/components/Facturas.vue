@@ -36,9 +36,13 @@
             </b-col>
 
             <b-col>
-            <button type="button" class="btn btn-lg btn-warning btn-block"  v-on:click="Crear">Crear</button>
+            <button type="button" class="btn btn-lg btn-warning btn-block"  v-on:click="CrearF">Crear Factura</button>
+            </b-col>
+             <b-col>
+            <button type="button" class="btn btn-lg btn-warning btn-block"  v-on:click="CrearL">Agregar Lineas</button>
             </b-col>
           </b-row>
+            <br>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="agregar">Linea Nueva</button>
     </b-container>
     <div v-for="line in lines">
@@ -144,31 +148,11 @@ export default {
 
       this.contador = this.contador + 1;
     },
-
-    Crear(){
-    this.total = 0;
+    CrearL(){
+       //Variables de linea de factura
+       var cant = this.lines.length;
       for (var i = 0; i < this.lines.length; i++){
-        this.total = this.total + (this.lines[i].cantidad * this.lines[i].precio);
-      }
-      //Variables de factura
-      var cant = this.lines.length;
-      var id = this.id;
-      var fecha = this.fecha;
-      var hora = this.hora;
-      var total = this.total;
-      var id_clientes = this.cliente
-      
-      //Crear factura
-      this.$http.post(`http://localhost:8000/facturas/create?id=${this.id}&fecha=${this.fecha}&hora=${this.hora}&total=${this.total}&id_clientes=${this.dict2[id_clientes]}`).then(response=>{
-      //this.id = '';
-      this.nombre = '';
-      this.categoria = '';
-      this.marca = '';
-      });
-      
-      //Variables de linea de factura
-      for (var i = 0; i < this.lines.length; i++){
-        id = this.lines[i].id_line;
+        var id = this.lines[i].id_line;
       //  console.log(id);
         var cantidad = this.lines[i].cantidad;
        // console.log(cantidad);
@@ -190,6 +174,27 @@ export default {
         this.lines.pop();
       }
       this.contador = 1;
+    },
+    CrearF(){
+    this.total = 0;
+      for (var i = 0; i < this.lines.length; i++){
+        this.total = this.total + (this.lines[i].cantidad * this.lines[i].precio);
+      }
+      //Variables de factura
+      var cant = this.lines.length;
+      var id = this.id;
+      var fecha = this.fecha;
+      var hora = this.hora;
+      var total = this.total;
+      var id_clientes = this.cliente
+      
+      //Crear factura
+      this.$http.post(`http://localhost:8000/facturas/create?id=${this.id}&fecha=${this.fecha}&hora=${this.hora}&total=${this.total}&id_clientes=${this.dict2[id_clientes]}`).then(response=>{
+      //this.id = '';
+      this.nombre = '';
+      this.categoria = '';
+      this.marca = '';
+      });
     }
   }
 };
