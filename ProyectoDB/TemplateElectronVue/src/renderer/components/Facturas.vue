@@ -90,16 +90,18 @@ export default {
   mounted() {
 
     this.$http.get("http://localhost:8000/productos").then(response => {
-      this.productos = response.data.productos;
-      console.log(this.productos);
-      console.log(this.hola1[0]);
-      this.productos.forEach(a=>this.hola1.push(a.nombre))
+
+      this.temporal1 = response.data.productos;
+      this.temporal1.forEach(a=>this.dict1[a.nombre]=a.id)
+      this.temporal1.forEach(a=>this.hola1.push(a.nombre))
 
     });
 
     this.$http.get("http://localhost:8000/clientes").then(response => {
-      this.temporal2 = response.data.clientes;
-      this.temporal2.forEach(a=>this.clientes.push(a.nombre))
+
+    this.temporal2 = response.data.clientes;
+    this.temporal2.forEach(a=>this.dict2[a.nombre]=a.id)
+    this.temporal2.forEach(a=>this.hola2.push(a.nombre))
 
     });
 
@@ -114,6 +116,9 @@ export default {
       productos:[],
       clientes:[],
       hola1:[],
+      hola2:[],
+      dict1:[],
+      dict2:[],
       fecha:'',
       hora:'',
       total:0,
