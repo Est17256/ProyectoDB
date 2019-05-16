@@ -12,12 +12,12 @@
 
             <b-col>
             <label for="nameInput">Fecha</label>
-            <input id="nameInput" type="text" v-model="fecha" class="form-control" >
+            <input id="nameInput" type="date" v-model="fecha" class="form-control" >
             </b-col>
 
             <b-col>
             <label for="nameInput">Hora</label>
-            <input id="nameInput" type="text" v-model="hora" class="form-control" >
+            <input id="nameInput" type="time" v-model="hora" class="form-control" >
             </b-col>
 
             <b-col>
@@ -28,7 +28,7 @@
             <b-col>
             <v-flex xs12>
               <v-combobox
-
+                v-model="cliente"
                 :items="clientes"
                 label="Cliente"
               ></v-combobox>
@@ -90,16 +90,18 @@ export default {
   mounted() {
 
     this.$http.get("http://localhost:8000/productos").then(response => {
-      this.productos = response.data.productos;
-      console.log(this.productos);
-      console.log(this.hola1[0]);
-      this.productos.forEach(a=>this.hola1.push(a.nombre))
+
+      this.temporal1 = response.data.productos;
+      this.temporal1.forEach(a=>this.dict1[a.nombre]=a.id)
+      this.temporal1.forEach(a=>this.hola1.push(a.nombre))
 
     });
 
     this.$http.get("http://localhost:8000/clientes").then(response => {
-      this.temporal2 = response.data.clientes;
-      this.temporal2.forEach(a=>this.clientes.push(a.nombre))
+
+    this.temporal2 = response.data.clientes;
+    this.temporal2.forEach(a=>this.dict2[a.nombre]=a.id)
+    this.temporal2.forEach(a=>this.hola2.push(a.nombre))
 
     });
 
@@ -109,10 +111,14 @@ export default {
     return {
       contador: 1,
       picked: "",
+      cliente: '',
       productosItem:[],
       productos:[],
       clientes:[],
       hola1:[],
+      hola2:[],
+      dict1:[],
+      dict2:[],
       fecha:'',
       hora:'',
       total:0,
@@ -144,6 +150,28 @@ export default {
       for (var i = 0; i < this.lines.length; i++){
         this.total = this.total + (this.lines[i].cantidad * this.lines[i].precio);
       }
+      //Variables de factura
+      var cant = this.lines.length;
+      var id = this.id;
+      var fecha = this.fecha;
+      var hora = this.hora;
+      var total = this.total;
+      var id_clientes = this.cliente
+      //Crear factura
+      //Variables de linea de factura
+      for (var i = 0; i < this.lines.length; i++){
+        id = this.lines[i].id_line;
+        var cantidad = this.lines[i].cantidad;
+        var precio = this.lines[i].precio;
+        var id_facturas = this.id;
+        var id_productos = this.lines[i].id_producto;
+        //Crear linea de factura
+
+      }
+      for (var i = 0; i < cant; i++){
+        this.lines.pop();
+      }
+      this.contador = 1;
     }
   }
 };
