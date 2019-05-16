@@ -36,17 +36,13 @@
       <b-container class="bv-example-row2">
         <b-row class="justify-content-md-center">
           <b-col>
-            <label for="levelInput">Tipo de usuario</label>
+            <label for="levelInput">Tipo de creacion</label>
                 <b-form-select id="levelInput" v-model="selected" class="mb-3">
                   <option value="Marca">Marca</option>
                   <option value="Categoria">Categoria</option>
                   <option value="Cliente">Cliente</option>
                 </b-form-select>
           </b-col>
-          <b-col>
-            <label for="nameInput">ID</label>
-            <input id="nameInput" type="text" v-model="id" class="form-control" placeholder="ID">
-          </b-col> 
           <b-col>
             <label for="nameInput">Nombre</label>
             <input id="nameInput" type="text" v-model="nombre" class="form-control" placeholder="Nombre">
@@ -132,7 +128,7 @@ export default {
         });
       }
       if (this.selected=="Cliente") {
-        this.$http.post(`http://localhost:8000/clientes/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
+        this.$http.post(`http://localhost:8000/clientes/create?nombre=${this.nombre}`).then(response=>{
         this.refreshUsers();
         this.id = '';
         this.nombre = '';

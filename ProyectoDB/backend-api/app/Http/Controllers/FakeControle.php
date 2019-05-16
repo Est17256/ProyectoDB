@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\categorias;
 use App\marcas;
 use App\clientes;
@@ -54,8 +55,9 @@ class FakeControle extends Controller
             'message'=>'Funciono',
         ], 200);
     }
-    public function createProdF(Faker $faker)
+    public function createProdF(Request $request)
     {   
+        $faker = Faker::create();
         for($x=0;$x<10;$x++)
             {
                 #Marcas
@@ -86,7 +88,7 @@ class FakeControle extends Controller
                 $clientesR=clientes::all()->random();
                 $clientesR=$clientesR->id;
                 $facturas = new facturas;
-                $facturas->fecha = $faker->date;
+                $facturas->fecha = $request->fecha;
                 $facturas->hora = $faker->time;
                 $facturas->total = 0;
                 $facturas->id_clientes = $clientesR;

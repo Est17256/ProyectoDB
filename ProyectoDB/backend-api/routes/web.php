@@ -37,7 +37,7 @@ $router->post('/linea_factura/create', 'GustavoController@createLinFac');
 
 $router->get('/categorias', 'LuisController@getCat');
 $router->get('/categoriasF', 'FakeControle@getCatF');
-$router->post('/categoriasF2', 'FakeControle@createProdF');
+$router->post('/categoriasFa', 'FakeControle@createProdF');
 $router->get('/marcas', 'LuisController@getMar');
 $router->get('/clientes', 'LuisController@getCli');
 $router->get('/productos', 'GustavoController@getPro');

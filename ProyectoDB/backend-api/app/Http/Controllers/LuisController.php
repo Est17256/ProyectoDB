@@ -39,7 +39,7 @@ class LuisController extends Controller
     public function createCli(Request $request)
     {    
         $clientes = new clientes;
-        $clientes->id = $request->id;
+        #$clientes->id = $request->id;
         $clientes->nombre = $request->nombre;
         $clientes->save();
 
