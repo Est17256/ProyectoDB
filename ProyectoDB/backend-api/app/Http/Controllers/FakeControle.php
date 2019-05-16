@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\categorias;
 use App\marcas;
 use App\clientes;
@@ -55,9 +54,8 @@ class FakeControle extends Controller
             'message'=>'Funciono',
         ], 200);
     }
-    public function createProdF(Request $request)
+    public function createProdF(Request $request,Faker $faker)
     {   
-        $faker = Faker::create();
         for($x=0;$x<10;$x++)
             {
                 #Marcas

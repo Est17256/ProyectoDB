@@ -22,7 +22,7 @@ export default {
     data () {
       return {
         id:'',
-        fechaF:'',
+        fecha:'',
         hola:[],
         categoria: [],
         user:[],
@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         fecha2(){
-          this.$http.get(`http://localhost:8000/categoriasFa?fecha=${this.fecha}`).then(response => {
+          this.$http.post(`http://localhost:8000/categoriasFa?fecha=${this.fecha}`).then(response => {
             this.categoria = response.data.categorias;
             console.log(this.categoria);
           });
