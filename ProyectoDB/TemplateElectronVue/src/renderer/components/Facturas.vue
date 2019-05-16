@@ -146,6 +146,7 @@ export default {
         this.total = this.total + (this.lines[i].cantidad * this.lines[i].precio);
       }
       //Variables de factura
+      var cant = this.lines.length;
       var id = this.id;
       var fecha = this.fecha;
       var hora = this.hora;
@@ -162,7 +163,10 @@ export default {
         //Crear linea de factura
 
       }
-
+      for (var i = 0; i < cant; i++){
+        this.lines.pop();
+      }
+      this.contador = 1;
     }
   }
 };
