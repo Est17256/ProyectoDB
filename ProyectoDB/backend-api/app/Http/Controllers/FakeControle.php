@@ -101,7 +101,7 @@ class FakeControle extends Controller
                         $productosR=productos::all()->random();
                         $productosR=$productosR->id;
                         $lineaF = new linea_factura;
-                        $lineaF->id =$i+1; 
+                        //$lineaF->id =$i+1; 
                         $lineaF->precio =$faker->randomDigit; 
                         $lineaF->cantidad = rand(1,5);
                         $lineaF->id_facturas =$facturas->id;

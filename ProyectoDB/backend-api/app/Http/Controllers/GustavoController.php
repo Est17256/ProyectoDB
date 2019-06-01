@@ -16,7 +16,7 @@ class GustavoController extends Controller
     public function createPro(Request $request)
     {
         $productos = new productos;
-        $productos->id = $request->id;
+        #$productos->id = $request->id;
         $productos->nombre = $request->nombre;
         $productos->id_categorias = $request->categoria;
         $productos->id_marcas = $request->marca;
@@ -96,7 +96,7 @@ class GustavoController extends Controller
     {   
         $facturas = new facturas;
         
-        $facturas->id = $request->id;
+        #$facturas->id = $request->id;
         $facturas->fecha = $request->fecha;
         $facturas->hora = $request->hora;
         $facturas->total = $request->total;
@@ -123,7 +123,7 @@ class GustavoController extends Controller
     {   
         $linea_factura = new linea_factura;
         
-        $linea_factura->id = $request->id;
+        #$linea_factura->id = $request->id;
         $linea_factura->cantidad = $request->cantidad;
         $linea_factura->precio = $request->precio;
         $linea_factura->id_facturas = $request->id_facturas;

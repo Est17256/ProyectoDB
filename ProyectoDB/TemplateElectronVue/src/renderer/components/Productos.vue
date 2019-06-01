@@ -1,6 +1,5 @@
 <template lang="">
   <div class="grey--text text--darken-2">
-    <h1 class="text-center">Crear Producto</h1>
     <br>
     <div>
       <b-container class="bv-example-row2">
@@ -26,13 +25,21 @@
         <b-row class="justify-content-md-center">
 
           <b-col>
-            <label for="nameInput">ID</label>
-            <input id="nameInput" type="text" v-model="id" class="form-control" placeholder="ID">
+            <br>
+            <br>
+            <h1 class="text-center">Crear Producto</h1>
+            <br>
+            <br>
           </b-col>
+        </b-row>
+
+        <b-row class="justify-content-md-center">
+
           <b-col>
             <label for="nameInput">Nombre</label>
             <input id="nameInput" type="text" v-model="nombre" class="form-control" placeholder="Nombre">
           </b-col>
+
           <b-col>
             <v-flex xs12>
               <v-combobox
@@ -40,10 +47,9 @@
                 :items="hola3"
                 label="Categoria"
               ></v-combobox>
-              <br><br><br><br><br><br><br>
-              <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear">Crear</button>
             </v-flex>
           </b-col>
+
           <b-col>
             <v-flex xs12>
               <v-combobox
@@ -53,10 +59,64 @@
               ></v-combobox>
             </v-flex>
           </b-col>
+
+          <b-col>
+          <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear">Crear</button>
+          </b-col>
+
+        </b-row>
+
+        <b-row class="justify-content-md-center">
+
+          <b-col>
+            <br>
+            <br>
+            <h1 class="text-center">Agregar Extra</h1>
+            <br>
+            <br>
+          </b-col>
+        </b-row>
+
+        <b-row class="justify-content-md-center">
+
+          <b-col>
+          </b-col>
+
+          <b-col>
+            <br>
+            <v-flex xs12>
+              <v-combobox
+                v-model="id"
+                :items="hola5"
+                label="ID Producto"
+              ></v-combobox>
+            </v-flex>
+          </b-col>
+          
+          <b-col>
+            <br>
+            <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="Crear2">Agregar opcional</button>
+          </b-col>
+          
+          
+
+          <b-col>
+          </b-col>
+        </b-row>
+          
+           <b-row class="justify-content-md-center">
           <b-col v-for = "a in contadorOp">
             <label> {{nombre_campo[a]}} </label>
             <input type = "text" class = "form-control" v-model="valor[a]">
           </b-col>
+          <b-col>
+          </b-col>
+          <b-col>
+          </b-col>
+          <b-col>
+          </b-col>
+          
+          
         </b-row>
       </b-container>
     </div>
@@ -67,8 +127,14 @@
 <script>
 export default {
   mounted() {
+    this.$http.get("http://localhost:8000/productos").then(response => {
+    this.temporal1 = response.data.productos;
+    this.temporal1.forEach(a=>this.hola5.push(a.id))
+    });
+
     this.$http.get("http://localhost:8000/productos2").then(response => {
       this.productos2 = response.data.productos;
+      this.productos2.forEach(a=>this.hola5.push(a.id))
 
     });
 
@@ -113,9 +179,11 @@ export default {
         id:0,
         nombre: '',
         extra: '',
+        temporal1:[],
         hola1:[],
         hola3:[],
         hola4:[],
+        hola5:[],
         user:[],
         valores:[],
         productos:[],
@@ -144,32 +212,43 @@ export default {
       }
   },
   methods:{
+     refreshUsers(){
+      this.$http.get("http://localhost:8000/productos").then(response => {
+      this.temporal1 = response.data.productos;
+      this.temporal1.forEach(a=>this.hola5.push(a.id))
+    });
     
+    },
     Crear(){
       
-      this.$http.post(`http://localhost:8000/productos/create?id=${this.id}&nombre=${this.nombre}&categoria=${this.dict1[this.categoria]}&marca=${this.dict2[this.marca]}`).then(response=>{
+      this.$http.post(`http://localhost:8000/productos/create?nombre=${this.nombre}&categoria=${this.dict1[this.categoria]}&marca=${this.dict2[this.marca]}`).then(response=>{
       //this.id = '';
+      //this.refreshUsers();
       this.nombre = '';
       this.categoria = '';
       this.marca = '';
+      this.refreshUsers();
       });
-      /*const data = {
-        id_producto: this.id,
-        id_campo: this.id_campo,
-        nombre: this.nombre,
-
-        
-      }*/
+    },
+    Crear2(){
+      
       for (var i = 0; i < this.valor.length; i++){
-        this.$http.post(`http://localhost:8000/valoropcional/create?id=${this.id}&id_campo=${this.id_campo[i]}&nombre_campo=${this.nombre_campo[i]}&valor=${this.valor[i]}`).then(response=>{
+        var id_pro = this.id;
+        console.log("id del producto");
+        console.log(id_pro);
+        console.log("id del campo");
+        console.log(this.id_campo[i]);
+        console.log("nombre del campo");
+        console.log(this.nombre_campo[i]);
+        console.log("valor del campo");
+        console.log(this.valor[i]);
+
+        this.$http.post(`http://localhost:8000/valoropcional/create?id=${id_pro}&id_campo=${this.id_campo[i]}&nombre_campo=${this.nombre_campo[i]}&valor=${this.valor[i]}`).then(response=>{
         
         console.log(response.data.hola);
         
       });
       }
-      //for (var i = 0; i < this.valorOpcional.length; i++){
-      //  this.valorOpcional[i] = '';   
-      //}
     }
   }
 };

@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      id:'',
+      //id:'',
       nombre:'',
       email:'',
       password:'',
@@ -43,6 +43,9 @@ export default {
   },
   methods:{
     Crear(){
+     // this.$http.post(`http://localhost:8000/opcional/create?nombre=${this.nombre}`).then(response=>{
+     // this.nombre = '';
+
       this.$http.post(`http://localhost:8000/opcional/create?id=${this.id}&nombre=${this.nombre}`).then(response=>{
       this.id = '';
       this.nombre = '';

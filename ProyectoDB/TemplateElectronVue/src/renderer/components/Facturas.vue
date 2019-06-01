@@ -5,10 +5,6 @@
     <div>
     <b-container class="bv-example-row">
           <b-row class="justify-content-md-center">
-            <b-col>
-            <label for="nameInput">ID</label>
-            <input id="nameInput" type="text" v-model="id" class="form-control" >
-            </b-col>
 
             <b-col>
             <label for="nameInput">Fecha</label>
@@ -18,11 +14,6 @@
             <b-col>
             <label for="nameInput">Hora</label>
             <input id="nameInput" type="time" v-model="hora" class="form-control" >
-            </b-col>
-
-            <b-col>
-            <label for="nameInput">Total</label>
-            <input id="nameInput" type="text" v-model="total" class="form-control" >
             </b-col>
 
             <b-col>
@@ -36,14 +27,43 @@
             </b-col>
 
             <b-col>
-            <button type="button" class="btn btn-lg btn-warning btn-block"  v-on:click="CrearF">Crear Factura</button>
-            </b-col>
-             <b-col>
-            <button type="button" class="btn btn-lg btn-warning btn-block"  v-on:click="CrearL">Agregar Lineas</button>
-            </b-col>
-          </b-row>
             <br>
             <button type="button" class="btn btn-lg btn-warning btn-block" v-on:click="agregar">Linea Nueva</button>
+            </b-col>
+
+          </b-row>
+
+          <b-row class="justify-content-md-center">
+            
+            <b-col>
+            <label for="nameInput">Total</label>
+            <input id="nameInput" type="text" v-model="total" class="form-control" >
+            </b-col>
+
+            <b-col>
+              <br>
+            <button type="button" class="btn btn-lg btn-warning btn-block"  v-on:click="CrearF">Crear Factura</button>
+            </b-col>
+
+            <b-col>
+            <v-flex xs12>
+              <v-combobox
+                v-model="id"
+                :items="hola3"
+                label="ID Factura"
+              ></v-combobox>
+            </v-flex>
+            </b-col>
+
+            
+
+             <b-col>
+               <br>
+
+              <button type="button" class="btn btn-lg btn-warning btn-block"  v-on:click="CrearL">Agregar Lineas</button>
+            </b-col>
+
+          </b-row>
     </b-container>
     <div v-for="line in lines">
     <b-container class="bv-example-row2">
@@ -108,6 +128,10 @@ export default {
     this.temporal2.forEach(a=>this.hola2.push(a.nombre))
 
     });
+    this.$http.get("http://localhost:8000/facturas").then(response => {
+    this.temporal3 = response.data.facturas;
+    this.temporal3.forEach(a=>this.hola3.push(a.id))
+    });
 
     //this.agregar();
   },
@@ -121,6 +145,7 @@ export default {
       clientes:[],
       hola1:[],
       hola2:[],
+      hola3:[],
       dict1:[],
       dict2:[],
       fecha:'',
@@ -132,10 +157,17 @@ export default {
       name:'',
       selected:'',
       temporal1:[],
-      temporal2:[]
+      temporal2:[],
+      temporal3:[]
     };
   },
   methods:{
+    refreshUsers(){
+      this.$http.get("http://localhost:8000/facturas").then(response => {
+      this.temporal3 = response.data.facturas;
+      this.temporal3.forEach(a=>this.hola3.push(a.id))
+    });
+    },
     agregar(){
       this.contador
       this.lines.push({
@@ -167,7 +199,7 @@ export default {
         //console.log(this.lines[i].id_productos);
         //console.log(id_productos);
         //Crear linea de factura
-        this.$http.post(`http://localhost:8000/linea_factura/create?id=${id}&cantidad=${cantidad}&precio=${precio}&id_facturas=${id_facturas}&id_productos=${this.dict1[id_productos]}`).then(response=>{        
+        this.$http.post(`http://localhost:8000/linea_factura/create?cantidad=${cantidad}&precio=${precio}&id_facturas=${id_facturas}&id_productos=${this.dict1[id_productos]}`).then(response=>{        
         });
       }
       for (var i = 0; i < cant; i++){
@@ -189,8 +221,9 @@ export default {
       var id_clientes = this.cliente
       
       //Crear factura
-      this.$http.post(`http://localhost:8000/facturas/create?id=${this.id}&fecha=${this.fecha}&hora=${this.hora}&total=${this.total}&id_clientes=${this.dict2[id_clientes]}`).then(response=>{
+      this.$http.post(`http://localhost:8000/facturas/create?fecha=${this.fecha}&hora=${this.hora}&total=${this.total}&id_clientes=${this.dict2[id_clientes]}`).then(response=>{
       //this.id = '';
+      this.refreshUsers();
       this.nombre = '';
       this.categoria = '';
       this.marca = '';
