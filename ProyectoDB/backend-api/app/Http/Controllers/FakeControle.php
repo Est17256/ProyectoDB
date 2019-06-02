@@ -60,7 +60,7 @@ class FakeControle extends Controller
             {
                 #Marcas
                 $marcas = new marcas;
-                $marcas->nombre = $faker->company;
+                $marcas->nombre = $faker->word;
                 $marcas->save();
                 #Categoria
                 $categorias = new categorias;
