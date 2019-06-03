@@ -58,31 +58,6 @@ class FakeControle extends Controller
     {   
         for($x=0;$x<10;$x++)
             {
-                #Marcas
-                $marcas = new marcas;
-                $marcas->nombre = $faker->word;
-                $marcas->save();
-                #Categoria
-                $categorias = new categorias;
-                $categorias->nombre = $faker->word;
-                $categorias->save();
-                #Clientes
-                $clientes = new clientes;
-                $clientes->nombre = $faker->name;
-                $clientes->save();
-                #Productos
-                $hola=categorias::all()->random();
-                $hola=$hola->id;
-                $hola2=marcas::all()->random();;
-                $hola2=$hola2->id;
-                $productos = new productos;
-                $productos->nombre = $faker->word;
-                $productos->id_categorias = $hola;
-                $productos->id_marcas = $hola2;
-                $productos->save();
-            }
-        for($x=0;$x<10;$x++)
-            {
                 $clientesR=clientes::all()->random();
                 $clientesR=$clientesR->id;
                 $facturas = new facturas;
